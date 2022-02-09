@@ -1,2 +1,2 @@
-# Front_Project
+# React_MiniProject
 Created with CodeSandbox

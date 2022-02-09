@@ -1,0 +1,73 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  height: 83px;
+  background: #FFFFFF;
+  width: 100%;
+  z-index:10;
+  display: flex;
+  justify-content: space-between;
+  margin:0;
+  padding: 0px 20px 32px;
+  box-sizing: border-box;
+
+
+   li {
+    position: relative;
+    width:67px;
+    height:51px;
+    text-align: center;
+    img{
+      vertical-align: top;
+    }
+    .top_icon:focus .top1 {
+      display:block;
+    }
+    .top1{
+      position: absolute;
+      top:0;
+      left: 0;
+      display: none;
+    }
+    .new_icon:focus .new1 {
+      display:block;
+    }
+    .new1{
+      position: absolute;
+      top:0;
+      left: 0;
+      display: none;
+    }
+    .ask_icon:focus .ask1 {
+      display:block;
+    }
+    .ask1{
+      position: absolute;
+      top:0;
+      left: 0;
+      display: none;
+    }
+    .show_icon:focus .show1 {
+      display:block;
+    }
+    .show1{
+      position: absolute;
+      top:0;
+      left: 0;
+      display: none;
+    }
+    .job_icon:focus .job1 {
+      display:block;
+    }
+    .job1{
+      position: absolute;
+      top:0;
+      left: 0;
+      display: none;
+    }
+
+    
+   
+  }
+ 
+}

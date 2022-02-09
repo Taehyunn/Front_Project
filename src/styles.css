@@ -1,0 +1,18 @@
+.App {
+  font-family: none;
+  /* height: 100vh; */
+}
+/* @font-face {
+  font-family: "Pretendard";
+  font-weight: 800;
+  font-display: swap;
+  src: local("Pretendard Bold"),
+    url("font/Pretendard-Bold.woff2") format("woff2");
+  /* url("./font/Pretemdard-Bold.woff2"); */
+} 
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
