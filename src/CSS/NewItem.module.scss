@@ -15,36 +15,39 @@
 
 
 
-  > a {
-  display: inline-block; 
+  img {
+    vertical-align: top;
+  }
+  a {
+    display: inline-block; 
+    text-decoration: none;
+    color: #000000;
+  }
+
+  .newTitle {
   text-align: start;
   font-family: "Roboto",sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
   line-height: 21px;
-  text-decoration: none;
-  color: #000000;
   }
-  span {
-    display: inline-block;
+  .newby {
     padding:13px 0 16px;
     box-sizing: border-box;
    
   }
+  .newby>a:hover{
+    color:#7B61FF;
+  }
   .new_comments {
-    display: inline-block;
     display:flex;
     align-items: center;
-    // width: 63px;
     height: 10px;
     font-weight: normal;
     font-size: 10px;
     line-height: 10px;
-    /* or 100% */
     letter-spacing: -0.5px;
-   
-  
     color: #7B61FF;
 
   }

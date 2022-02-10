@@ -11,7 +11,7 @@ const CommentsStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 40px 20px 40px 40px;
+  padding: 40px 20px 40px 60px;
   background: #ffffff;
   /* word-wrap: break-word; 자동 줄바꿈 */
 `;
@@ -68,7 +68,23 @@ export const InCommentReply = ({ Reply }) => {
   };
   useEffect(() => {
     getInCommentReply().then((data) => data && setcommentReply(data));
+    return () => {
+      setcommentReply([]);
+    };
   }, []);
 
-  return <div>ㅎㅇ</div>;
+  return commentReply ? (
+    <div>
+      <CommentsStyled>
+        <User>
+          <img src={require("../../public/img/vector.png")} alt="userfill" />
+          {commentReply.by}
+        </User>
+        <UserText>
+          <div dangerouslySetInnerHTML={{ __html: commentReply.text }} />
+        </UserText>
+        <Time>{mapTime(commentReply.time)}</Time>
+      </CommentsStyled>
+    </div>
+  ) : null;
 };

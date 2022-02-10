@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getStory } from "../Api";
 import styled from "styled-components";
 import { mapTime } from "../mapTime";
+import { Link } from "react-router-dom";
 
 const NewStyledItem = styled.div`
   display: flex;
@@ -90,9 +91,9 @@ export const NewtotalItem = ({ newlist }) => {
         <div>
           <span>{mapTime(newItem.time)}</span>
 
-          <a href={newDetailUrl} className="newcomments">
-            {newItem.kids ? <p>{newItem.kids.length} comments</p> : null}
-          </a>
+          <Link to={newDetailUrl} className="newcomments">
+            {newItem.descendants ? <p>{newItem.descendants} comments</p> : null}
+          </Link>
         </div>
       </li>
     </NewStyledItem>

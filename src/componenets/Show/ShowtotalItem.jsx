@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getStory } from "../Api";
 import styled from "styled-components";
 import { mapTime } from "../mapTime";
+import { Link } from "react-router-dom";
 
 const ShowStyledItem = styled.div`
   display: flex;
@@ -94,9 +95,11 @@ export const ShowtotalItem = ({ showlist }) => {
         </a>
         <div>
           <span>{mapTime(showItem.time)}</span>
-          <a href={showDetail} className="show_comments">
-            {showItem.kids ? <p>{showItem.kids.length} comments</p> : null}
-          </a>
+          <Link to={showDetail} className="show_comments">
+            {showItem.descendants ? (
+              <p>{showItem.descendants} comments</p>
+            ) : null}
+          </Link>
         </div>
       </li>
     </ShowStyledItem>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getStory } from "../Api";
 import askStyles from "../../CSS/AskItem.module.scss";
+import { Link } from "react-router-dom";
 
 export const AskItem = ({ askId, isMount }) => {
   const [asks, setAsk] = useState([]);
@@ -28,12 +29,12 @@ export const AskItem = ({ askId, isMount }) => {
         By :{asks.by} <br />
         Posted:{asks.time}
       </span>
-      {asks.kids ? (
-        <a href={askDetail} className={askStyles["ask_comments"]}>
+      {asks.descendants ? (
+        <Link to={askDetail} className={askStyles["ask_comments"]}>
           <img src="img/comment_icon_ask.png" alt="댓글" />
           &nbsp;
-          {asks.kids.length}
-        </a>
+          {asks.descendants}
+        </Link>
       ) : null}
     </li>
   ) : null;

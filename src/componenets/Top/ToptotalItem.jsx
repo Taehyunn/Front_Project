@@ -16,6 +16,10 @@ const TotalItemStyled = styled.div`
     display: flex;
     align-items: center;
   }
+  a {
+    display: inline-block;
+    text-decoration: none;
+  }
   .main_link {
     text-decoration: none;
     padding: 10px 0;
@@ -69,10 +73,31 @@ const TotalItemStyled = styled.div`
   }
   background: #ffffff;
 `;
+const Userinfo = styled.div`
+  color: #6b6b6b;
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 110%;
+  .totalItemby {
+    color: #6b6b6b;
+    font-family: "Pretendard";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 110%;
+  }
+  .totalItemby:hover {
+    color: #fd6106;
+  }
+`;
 
 export const ToptotalItem = ({ toplist }) => {
   const [totalItem, setTotal] = useState([]);
   const [detailUrl, setDetailUrl] = useState("");
+  const [topUserUrl, settopUserUrl] = useState("");
+
   useEffect(() => {
     getStory(toplist).then((data) => data && setTotal(data));
     setDetailUrl(`/Top/${toplist}`);
@@ -80,6 +105,12 @@ export const ToptotalItem = ({ toplist }) => {
       setTotal([]);
     };
   }, []);
+  useEffect(() => {
+    settopUserUrl(`/User/${totalItem.by}`);
+    return () => {
+      settopUserUrl("");
+    };
+  }, [totalItem.by]);
 
   const urlName = totalItem.url?.slice(8).split("/")[0];
 
@@ -89,14 +120,21 @@ export const ToptotalItem = ({ toplist }) => {
         <a href={totalItem.url} className="small_link" target="_blank">
           {urlName}
         </a>
-        <a href={totalItem.url} target="_blank" className="main_link">
+        <a href={totalItem.url} className="main_link" target="_blank">
           {totalItem.title}
         </a>
+        <Userinfo>
+          {totalItem.score} points&nbsp;
+          <Link to={topUserUrl} className="totalItemby">
+            by {totalItem.by}
+          </Link>
+        </Userinfo>
         <div>
           <span>{mapTime(totalItem.time)}</span>
-
           <Link to={detailUrl} className="topcomments">
-            {totalItem.kids ? <p>{totalItem.kids.length} comments</p> : null}
+            {totalItem.descendants ? (
+              <p>{totalItem.descendants} comments</p>
+            ) : null}
           </Link>
         </div>
       </li>

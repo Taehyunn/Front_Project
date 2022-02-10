@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getStory } from "../Api";
 import styled from "styled-components";
 import { mapTime } from "../mapTime";
+import { Link } from "react-router-dom";
 
 const JobStyledItem = styled.div`
   display: flex;
@@ -70,6 +71,7 @@ export const JobtotalItem = ({ joblist }) => {
   const [jobItem, setJobItem] = useState([]);
   const [jobDetailUrl, setJobDetailUrl] = useState("");
 
+  //Job 데이터 받아오기
   useEffect(() => {
     getStory(joblist).then((data) => data && setJobItem(data));
     setJobDetailUrl(`/Job/${joblist}`);
@@ -77,7 +79,9 @@ export const JobtotalItem = ({ joblist }) => {
       setJobItem([]);
     };
   }, []);
+  //소제목(host) 네임만 따오기.
   const urlName = jobItem.url?.slice(8).split("/")[0];
+
   return jobItem && jobItem.url ? (
     <JobStyledItem>
       <li>
@@ -90,9 +94,9 @@ export const JobtotalItem = ({ joblist }) => {
         <div>
           <span>{mapTime(jobItem.time)}</span>
 
-          <a href={jobDetailUrl} className="jobcomments">
-            {jobItem.kids ? <p>{jobItem.kids.length} comments</p> : null}
-          </a>
+          <Link to={jobDetailUrl} className="jobcomments">
+            {jobItem.descendants ? <p>{jobItem.descendants} comments</p> : null}
+          </Link>
         </div>
       </li>
     </JobStyledItem>

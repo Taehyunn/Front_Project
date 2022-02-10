@@ -48,6 +48,14 @@ export const getJobIds = async () => {
   return result;
 };
 
+//User
+export const getUser = async (UserId) => {
+  const result = await axios
+    .get(`https://hacker-news.firebaseio.com/v0/user/${UserId}.json`)
+    .then(({ data }) => data);
+  return result;
+};
+
 // Show 주제의 글 목록 조회하기 : https://hacker-news.firebaseio.com/v0/showstories.json
 // Job 주제의 글 목록 조회하기 : https://hacker-news.firebaseio.com/v0/jobstories.json
 //New 주제의 글 목록 조회하기 : https://hacker-news.firebaseio.com/v0/newstories.json/

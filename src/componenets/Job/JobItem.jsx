@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getStory } from "../Api";
 import jobStyles from "../../CSS/JobItem.module.scss";
+import { Link } from "react-router-dom";
 
 export const JobItem = ({ jobId, isMount }) => {
   const [jobs, setJob] = useState([]);
@@ -27,11 +28,11 @@ export const JobItem = ({ jobId, isMount }) => {
         Posted:{jobs.time}
       </span>
       {jobs.kids ? (
-        <a href={jobUrl} className={jobStyles["job_comments"]}>
+        <Link to={jobUrl} className={jobStyles["job_comments"]}>
           <img src="img/comment_icon_job.png" alt="댓글" />
           &nbsp;
           {jobs.kids.length}
-        </a>
+        </Link>
       ) : null}
     </li>
   ) : null;

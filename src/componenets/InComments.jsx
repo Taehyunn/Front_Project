@@ -70,6 +70,9 @@ export const InComments = ({ inkid }) => {
 
   useEffect(() => {
     getkidComments().then((data) => data && setkidComment(data));
+    return () => {
+      setkidComment([]);
+    };
   }, []);
 
   useEffect(() => {

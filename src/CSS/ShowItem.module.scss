@@ -15,22 +15,30 @@
 
 
 
-  > a {
-  display: inline-block; 
+  img {
+    vertical-align: top;
+  }
+  a {
+    display: inline-block; 
+    text-decoration: none;
+    color: #000000;
+  }
+
+  .showTitle {
   text-align: start;
   font-family: "Roboto",sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
   line-height: 21px;
-  text-decoration: none;
-  color: #000000;
   }
-  span {
-    display: inline-block;
+  .showby {
     padding:13px 0 16px;
     box-sizing: border-box;
    
+  }
+  .showby>a:hover{
+    color:#69A075;
   }
   .show_comments {
     display: inline-block;

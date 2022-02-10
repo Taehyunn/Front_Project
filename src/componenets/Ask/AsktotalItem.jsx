@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getStory } from "../Api";
 import styled from "styled-components";
 import { mapTime } from "../mapTime";
+import { Link } from "react-router-dom";
 
 const AskStyledItem = styled.div`
   display: flex;
@@ -82,7 +83,7 @@ export const AsktotalItem = ({ asklist }) => {
     };
   }, []);
   const urlName = askItem.url?.slice(8).split("/")[0];
-  // console.log(askItem)
+  // console.log(askItem);
   return askItem ? (
     <AskStyledItem>
       <li>
@@ -94,9 +95,9 @@ export const AsktotalItem = ({ asklist }) => {
         </a>
         <div>
           <span>{mapTime(askItem.time)}</span>
-          <a href={askDetail} className="askcomments">
-            {askItem.kids ? <p>{askItem.kids.length} comments</p> : null}
-          </a>
+          <Link to={askDetail} className="askcomments">
+            {askItem.descendants ? <p>{askItem.descendants} comments</p> : null}
+          </Link>
         </div>
       </li>
     </AskStyledItem>

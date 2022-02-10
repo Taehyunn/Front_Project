@@ -7,12 +7,11 @@ import { mapTime } from "../componenets/mapTime";
 const DetailStyled = styled.div`
   padding-top: 60px;
   padding-bottom: 83px;
-  .detailtext {
-  }
 `;
 const QWrap = styled.div`
   padding: 20px;
   white-space: pre-wrap;
+  border-bottom: 1px solid #e8e8ed;
   .detailtitle {
     font-family: "Pretendard";
     font-style: normal;
@@ -75,12 +74,45 @@ const CommentLength = styled.div`
     }
   }
 `;
+const Gopage = styled.div`
+  /* margin-top: 2px; */
+  padding: 20px;
+  box-sizing: border-box;
 
-export default function Detail(props) {
+  border-radius: 16px;
+  /* border: 1px solid black; */
+  height: 64px;
+  position: relative;
+  a {
+    position: absolute;
+    text-decoration: none;
+    font-family: "Pretendard";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    color: #6b6b6b;
+
+    width: 100px;
+    height: 24px;
+    right: 24px;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    img {
+      width: 24px;
+      height: 24px;
+      right: 20px;
+    }
+  }
+`;
+
+export default function Detail(props, { listName, setListName }) {
   const id = props.match.params.id;
   const [detail, setDetail] = useState([]);
   const [kids, setKids] = useState([]);
   const [start, setStart] = useState(false);
+  //답글 5개 이상 시 본문 페이지 이동.
+  const GopageId = `https://news.ycombinator.com/item?id=${id}`;
 
   const getDetail = async () => {
     const result = await axios
@@ -89,6 +121,7 @@ export default function Detail(props) {
 
     return result;
   };
+
   useEffect(() => {
     getDetail().then((data) => setDetail(data));
     return () => {
@@ -122,17 +155,30 @@ export default function Detail(props) {
           <a href="#">{kids?.length} comments</a>
         </CommentLength>
       </QWrap>
-      <ul>
-        {kids &&
-          start &&
-          kids.map((kid) => (
-            <Comments
-              dangerouslySetInnerHTML={{ __html: kid.text }}
-              kid={kid}
-              key={kid.toString()}
-            />
-          ))}
-      </ul>
+      {start ? (
+        <ul>
+          {kids &&
+            kids.map((kid) => (
+              <Comments
+                dangerouslySetInnerHTML={{ __html: kid.text }}
+                kid={kid}
+                key={kid.toString()}
+              />
+            ))}
+
+          <Gopage>
+            <a href={GopageId} target="_blank">
+              Go to page
+              <img
+                src={require("../../public/img/expand_right.png")}
+                alt="본 페이지로 이동"
+              />
+            </a>
+          </Gopage>
+        </ul>
+      ) : null}
     </DetailStyled>
   );
 }
+
+//detail.url ||  => Gopage
