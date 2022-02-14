@@ -27,13 +27,13 @@ export const Footer = () => {
     <ul className={styles["footer"]}>
       <li>
         <NavLi to="/Top" activeClassName="top_navlink">
-          <img src={require("../../public/img/icon_top.png")} alt="top_icon" />
+          <img src="../img/icon_top.png" alt="top_icon" />
           {/* <img src="img/icon_top1.png" alt="new1" className={styles["top1"]} /> */}
         </NavLi>
       </li>
       <li>
         <NavLi to="/New" activeClassName="new_navlink">
-          <img src={require("../../public/img/icon_new.png")} alt="new_icon" />
+          <img src="../img/icon_new.png" alt="new_icon" />
           {/* <img
             src={require("../../public/img/icon_new1.png")}
             alt="new1"
@@ -43,7 +43,7 @@ export const Footer = () => {
       </li>
       <li>
         <NavLi to="/Ask" activeClassName="ask_navlink">
-          <img src={require("../../public/img/icon_ask.png")} alt="ask_icon" />
+          <img src="../img/icon_ask.png" alt="ask_icon" />
           {/* <img
             src={require("../../public/img/icon_ask1.png")}
             alt="ask1"
@@ -53,10 +53,7 @@ export const Footer = () => {
       </li>
       <li>
         <NavLi to="/Show" activeClassName="show_navlink">
-          <img
-            src={require("../../public/img/icon_show.png")}
-            alt="show_icon"
-          />
+          <img src="../img/icon_show.png" alt="show_icon" />
           {/* <img
             src={require("../../public/img/icon_show1.png")}
             alt="show1"
@@ -66,7 +63,7 @@ export const Footer = () => {
       </li>
       <li>
         <NavLi to="/Job" activeClassName="job_navlink">
-          <img src={require("../../public/img/icon_job.png")} alt="job_icon" />
+          <img src="../img/icon_job.png" alt="job_icon" />
           {/* <img
             src={require("../../public/img/icon_job1.png")}
             alt="show1"

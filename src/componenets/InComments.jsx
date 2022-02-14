@@ -82,7 +82,7 @@ export const InComments = ({ inkid }) => {
     <div>
       <CommentsStyled>
         <User>
-          <img src={require("../../public/img/vector.png")} alt="userfill" />
+          <img src="../img/vector.png" alt="userfill" />
           {kidComments.by}
         </User>
         <UserText>
