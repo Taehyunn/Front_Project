@@ -6,7 +6,7 @@ export const Search = () => {
     <div className={styles["header"]}>
       <Link to="/" className={styles["linkgo"]}>
         <img
-          src={require("../../public/img/reactlogo1.png")}
+          src={require("../../public/img/reactlogo.png")}
           width="20"
           height="25"
           alt="로고"
