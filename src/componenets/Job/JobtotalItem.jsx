@@ -15,6 +15,10 @@ const JobStyledItem = styled.div`
     display: flex;
     align-items: center;
   }
+  a {
+    display: inline-block;
+    text-decoration: none;
+  }
   .jobmain_link {
     text-decoration: none;
     padding: 10px 0;
@@ -66,10 +70,30 @@ const JobStyledItem = styled.div`
   }
   background: #ffffff;
 `;
+const Userinfo = styled.div`
+  color: #6b6b6b;
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 110%;
+  .askItemby {
+    color: #6b6b6b;
+    font-family: "Pretendard";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 110%;
+  }
+  .totalItemby:hover {
+    color: #fd6106;
+  }
+`;
 
 export function Jobtotal({ joblist }) {
   const [jobItem, setJobItem] = useState([]);
   const [jobDetailUrl, setJobDetailUrl] = useState("");
+  const [jobUserUrl, setjobUserUrl] = useState("");
 
   //Job 데이터 받아오기
   useEffect(() => {
@@ -79,6 +103,13 @@ export function Jobtotal({ joblist }) {
       setJobItem([]);
     };
   }, []);
+
+  useEffect(() => {
+    setjobUserUrl(`/User/${jobItem.by}`);
+    return () => {
+      setjobUserUrl();
+    };
+  }, [jobItem.by]);
   //소제목(host) 네임만 따오기.
   const urlName = jobItem.url?.slice(8).split("/")[0];
 
@@ -93,6 +124,12 @@ export function Jobtotal({ joblist }) {
         <a href={jobItem.url} className="jobmain_link" target="_blank">
           {jobItem.title}
         </a>
+        <Userinfo>
+          {jobItem.score} points&nbsp;
+          <Link to={jobUserUrl} className="askItemby">
+            by {jobItem.by}
+          </Link>
+        </Userinfo>
         <div>
           <span>{mapTime(jobItem.time)}</span>
 

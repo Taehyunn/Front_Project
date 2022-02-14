@@ -97,11 +97,18 @@ function Newtotal({ newlist }) {
   useEffect(() => {
     getStory(newlist).then((data) => data && setNewItem(data));
     setNewDetailUrl(`/New/${newlist}`);
-    setnewUserUrl(`/User/${newItem.by}`);
+
     return () => {
       setNewItem([]);
     };
   }, []);
+
+  useEffect(() => {
+    setnewUserUrl(`/User/${newItem.by}`);
+    return () => {
+      setnewUserUrl();
+    };
+  }, [newItem.by]);
   const urlName = newItem.url?.slice(8).split("/")[0];
   return newItem && newItem.url ? (
     <NewStyledItem>

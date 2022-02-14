@@ -100,13 +100,20 @@ export function Asktotal({ asklist }) {
     getStory(asklist).then((data) => data && setAskItem(data));
     setAskUrl(`https://news.ycombinator.com/item?id=${asklist}`);
     setAskDetail(`/Ask/${asklist}`);
-    setaskUserUrl(`/User/${askItem.by}`);
+
     return () => {
       setAskItem([]);
       setAskUrl("");
       setAskDetail("");
     };
   }, []);
+  useEffect(() => {
+    setaskUserUrl(`/User/${askItem.by}`);
+    return () => {
+      setaskUserUrl();
+    };
+  }, [askItem.by]);
+
   const urlName = askItem.url?.slice(8).split("/")[0];
   // console.log(askItem);
   return askItem ? (

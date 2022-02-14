@@ -15,6 +15,10 @@ const ShowStyledItem = styled.div`
     display: flex;
     align-items: center;
   }
+  a {
+    display: inline-block;
+    text-decoration: none;
+  }
   .showmain_link {
     text-decoration: none;
     padding: 10px 0;
@@ -66,11 +70,31 @@ const ShowStyledItem = styled.div`
   }
   background: #ffffff;
 `;
+const Userinfo = styled.div`
+  color: #6b6b6b;
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 110%;
+  .askItemby {
+    color: #6b6b6b;
+    font-family: "Pretendard";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 110%;
+  }
+  .totalItemby:hover {
+    color: #fd6106;
+  }
+`;
 
 export function Showtotal({ showlist }) {
   const [showItem, setShowItem] = useState([]);
   const [showUrl, setShowUrl] = useState("");
   const [showDetail, setShowDetail] = useState("");
+  const [showUserUrl, setshowUserUrl] = useState("");
 
   useEffect(() => {
     getStory(showlist).then((data) => data && setShowItem(data));
@@ -82,6 +106,13 @@ export function Showtotal({ showlist }) {
       setShowDetail("");
     };
   }, []);
+
+  useEffect(() => {
+    setshowUserUrl(`/User/${showItem.by}`);
+    return () => {
+      setshowUserUrl();
+    };
+  }, [showItem.by]);
   const urlName = showItem.url?.slice(8).split("/")[0];
 
   return showItem ? (
@@ -95,6 +126,12 @@ export function Showtotal({ showlist }) {
         <a href={showUrl} className="showmain_link" target="_blank">
           {showItem.title}
         </a>
+        <Userinfo>
+          {showItem.score} points&nbsp;
+          <Link to={showUserUrl} className="askItemby">
+            by {showItem.by}
+          </Link>
+        </Userinfo>
         <div>
           <span>{mapTime(showItem.time)}</span>
           <Link to={showDetail} className="show_comments">

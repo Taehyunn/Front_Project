@@ -13,7 +13,6 @@ const UserInfowrap = styled.div`
 export default function User(props) {
   const [userDetail, setuserDetail] = useState([]);
   const id = props.match.params.id;
-
   useEffect(() => {
     getUser(id).then((data) => setuserDetail(data));
     return () => {

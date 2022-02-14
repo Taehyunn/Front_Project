@@ -97,18 +97,23 @@ export function Toptotal({ toplist }) {
   const [totalItem, setTotal] = useState([]);
   const [detailUrl, setDetailUrl] = useState("");
   const [topUserUrl, settopUserUrl] = useState("");
-  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
-    setLoading(true);
     getStory(toplist).then((data) => data && setTotal(data));
     setDetailUrl(`/Top/${toplist}`);
-    settopUserUrl(`/User/${totalItem.by}`);
-    setLoading;
+
     return () => {
       setTotal([]);
-      settopUserUrl("");
     };
   }, []);
+
+  useEffect(() => {
+    settopUserUrl(`/User/${totalItem.by}`);
+
+    return () => {
+      settopUserUrl();
+    };
+  }, [totalItem.by]);
 
   const urlName = totalItem.url?.slice(8).split("/")[0];
 
