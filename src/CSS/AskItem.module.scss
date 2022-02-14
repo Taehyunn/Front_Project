@@ -18,25 +18,27 @@
   }
 
 
-  > a {
-  display: inline-block; 
-  text-align: start;
-  font-family: "Roboto",sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 21px;
-  margin-bottom:13px;
-  text-decoration: none;
-
-  color: #000000;
+  a {
+    display: inline-block; 
+    text-decoration: none;
+    color: #000000;
   }
-  span {
-    display: inline-block;
-    padding:13px 0 16px;
-    box-sizing: border-box;
-   
-  }
+  .askTitle {
+    text-align: start;
+    font-family: "Roboto",sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    }
+    .askby {
+      padding:13px 0 16px;
+      box-sizing: border-box;
+     
+    }
+    .askby>a:hover{
+      color:#DB00FF;
+    }
   .ask_comments {
     display: inline-block;
     display:flex;

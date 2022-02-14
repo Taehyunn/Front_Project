@@ -11,13 +11,19 @@ export const NewItem = ({ newId, isMount }) => {
   useEffect(() => {
     getStory(newId).then((data) => data && setNew(data));
     setNewUrl(`/New/${newId}`);
-    setnewUserUrl(`/User/${news.by}`);
+
     return () => {
       setNew();
       setNewUrl();
-      setnewUserUrl();
     };
   }, []);
+
+  useEffect(() => {
+    setnewUserUrl(`/User/${news.by}`);
+    return () => {
+      setnewUserUrl();
+    };
+  }, [news.by]);
 
   //target=”_blank” 새탭에서 열람.
   return news && news.url ? (
@@ -31,7 +37,7 @@ export const NewItem = ({ newId, isMount }) => {
       </div>
       {news.descendants ? (
         <Link to={newUrl} className={newStyles["new_comments"]}>
-          <img src="img/comment_icon_new.png" alt="댓글" />
+          <img src="/img/comment_icon_new.png" alt="댓글" />
           &nbsp;
           {news.descendants}
         </Link>

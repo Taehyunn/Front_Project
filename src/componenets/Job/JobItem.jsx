@@ -10,13 +10,18 @@ export const JobItem = ({ jobId, isMount }) => {
   useEffect(() => {
     getStory(jobId).then((data) => data && setJob(data));
     setJobUrl(`/Job/${jobId}`);
-    setjobUserUrl(`/User/${jobs.by}`);
+
     return () => {
       setJob();
       setJobUrl();
-      setjobUserUrl();
     };
   }, []);
+  useEffect(() => {
+    setjobUserUrl(`/User/${jobs.by}`);
+    return () => {
+      setjobUserUrl();
+    };
+  }, [jobs.by]);
 
   //target=”_blank” 새탭에서 열람.
   return jobs && jobs.url ? (
@@ -30,7 +35,7 @@ export const JobItem = ({ jobId, isMount }) => {
       </div>
       {jobs.descendants ? (
         <Link to={jobUrl} className={jobStyles["job_comments"]}>
-          <img src="img/comment_icon_job.png" alt="댓글" />
+          <img src="/img/comment_icon_job.png" alt="댓글" />
           &nbsp;
           {jobs.descendants}
         </Link>

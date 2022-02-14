@@ -15,7 +15,6 @@ export default function TopItem({ storyId, isMount }) {
         setisError(false);
         getStory(storyId).then((data) => data && setTop(data));
         setTopUrl(`/Top/${storyId}`);
-        settopUserUrl(`/User/${top.by}`);
       }
     } catch (e) {
       setisError(true);
@@ -23,9 +22,15 @@ export default function TopItem({ storyId, isMount }) {
 
     return () => {
       setTop();
-      settopUserUrl("");
     };
   }, [isMount]);
+
+  useEffect(() => {
+    settopUserUrl(`/User/${top.by}`);
+    return () => {
+      settopUserUrl();
+    };
+  }, [top.by]);
 
   if (isError) return <div>에러가 발생했습니다</div>;
 
@@ -40,7 +45,7 @@ export default function TopItem({ storyId, isMount }) {
       </div>
       {top.descendants ? (
         <Link to={topUrl} className={styles["top_comments"]}>
-          <img src="img/comment_icon_top.png" alt="댓글" />
+          <img src="/img/comment_icon_top.png" alt="댓글" />
           &nbsp;
           {top.descendants}
         </Link>

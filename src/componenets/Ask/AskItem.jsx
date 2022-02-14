@@ -7,6 +7,7 @@ export const AskItem = ({ askId, isMount }) => {
   const [asks, setAsk] = useState([]);
   const [askUrl, setAskUrl] = useState("");
   const [askDetail, setAskDetail] = useState("");
+  const [askUserUrl, setaskUserUrl] = useState("");
 
   useEffect(() => {
     getStory(askId).then((data) => data && setAsk(data));
@@ -17,20 +18,26 @@ export const AskItem = ({ askId, isMount }) => {
       setAsk();
     };
   }, []);
+  useEffect(() => {
+    setaskUserUrl(`/User/${asks.by}`);
+    return () => {
+      setaskUserUrl();
+    };
+  }, [asks.by]);
 
   //target=”_blank” 새탭에서 열람.
   return asks ? (
     <li key={asks.id} className={askStyles["Askli"]}>
-      <a href={askUrl} target="_blank">
+      <a href={askUrl} className={askStyles["askTitle"]} target="_blank">
         <p>{asks.title}</p>
       </a>
-      <span>
-        By :{asks.by} <br />
+      <div className={askStyles["askby"]}>
+        <Link to={askUserUrl}>By :{asks.by}</Link> <br />
         Posted:{asks.time}
-      </span>
+      </div>
       {asks.descendants ? (
         <Link to={askDetail} className={askStyles["ask_comments"]}>
-          <img src="img/comment_icon_ask.png" alt="댓글" />
+          <img src="/img/comment_icon_ask.png" alt="댓글" />
           &nbsp;
           {asks.descendants}
         </Link>

@@ -10,13 +10,18 @@ export const ShowItem = ({ showId, isMount }) => {
   useEffect(() => {
     getStory(showId).then((data) => data && setShow(data));
     setShwoUrl(`/Show/${showId}`);
-    setshowUserUrl(`/User/${shows.by}`);
+
     return () => {
       setShow();
-      setshowUserUrl("");
       setShwoUrl();
     };
   }, []);
+  useEffect(() => {
+    setshowUserUrl(`/User/${shows.by}`);
+    return () => {
+      setshowUserUrl();
+    };
+  }, [shows.by]);
 
   //target=”_blank” 새탭에서 열람.
   return shows && shows.url ? (
