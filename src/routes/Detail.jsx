@@ -169,10 +169,7 @@ export default function Detail(props, { listName, setListName }) {
           <Gopage>
             <a href={GopageId} target="_blank">
               Go to page
-              <img
-                src={require("../../public/img/expand_right.png")}
-                alt="본 페이지로 이동"
-              />
+              <img src="../img/expand_right.png" alt="본 페이지로 이동" />
             </a>
           </Gopage>
         </ul>
