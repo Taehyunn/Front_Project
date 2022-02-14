@@ -5,7 +5,7 @@ export const Search = () => {
   return (
     <div className={styles["header"]}>
       <Link to="/" className={styles["linkgo"]}>
-        <img src="/img/reactlogo.png" width="20" height="25" alt="로고" />
+        <img src="../img/reactlogo.png" width="20" height="25" alt="로고" />
       </Link>
       <p>
         react
@@ -16,7 +16,7 @@ export const Search = () => {
         <br />
       </p>
       <Link to="#" className={styles["search2"]}>
-        <img src={require("../../public/img/search.png")} alt="검색" />
+        <img src="../img/search.png" alt="검색" />
       </Link>
     </div>
   );
