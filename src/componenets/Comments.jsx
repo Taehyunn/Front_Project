@@ -86,19 +86,3 @@ export const Comments = ({ kid }) => {
     </div>
   ) : null;
 };
-
-//&nbsp;
-// {
-//    {<p>
-//             {/* {/{listkid.text?.split('\n').map((line) => {
-//               return (
-//                 <span key={line}>
-//                   {line}
-//                   <br />
-//                 </span>
-//               );
-//             })} } }
-//             {listkid.text}
-
-//           </p> }
-// }

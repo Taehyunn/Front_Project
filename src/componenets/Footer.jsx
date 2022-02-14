@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../CSS/Footer.module.scss";
 import styled from "styled-components";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const NavLi = styled(NavLink)`
   &.top_navlink {
