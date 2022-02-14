@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getStory } from "../Api";
+import { getStory } from "../utils/Api";
 import styled from "styled-components";
 import { mapTime } from "../mapTime";
 import { Link } from "react-router-dom";
@@ -67,7 +67,7 @@ const ShowStyledItem = styled.div`
   background: #ffffff;
 `;
 
-export const ShowtotalItem = ({ showlist }) => {
+export function Showtotal({ showlist }) {
   const [showItem, setShowItem] = useState([]);
   const [showUrl, setShowUrl] = useState("");
   const [showDetail, setShowDetail] = useState("");
@@ -87,9 +87,11 @@ export const ShowtotalItem = ({ showlist }) => {
   return showItem ? (
     <ShowStyledItem>
       <li>
-        <a href={showItem.url} className="small_link" target="_blank">
-          {urlName}
-        </a>
+        {showItem.url && (
+          <a href={showItem.url} className="small_link" target="_blank">
+            {urlName}
+          </a>
+        )}
         <a href={showUrl} className="showmain_link" target="_blank">
           {showItem.title}
         </a>
@@ -104,4 +106,5 @@ export const ShowtotalItem = ({ showlist }) => {
       </li>
     </ShowStyledItem>
   ) : null;
-};
+}
+export const ShowtotalItem = React.memo(Showtotal);

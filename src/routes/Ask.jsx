@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { getAskIds } from "../componenets/Api";
+import { getAskIds } from "../componenets/utils/Api";
 import { AsktotalItem } from "../componenets/Ask/AsktotalItem";
 
 const AskStyled = styled.div`
@@ -17,7 +17,7 @@ const AskStyled = styled.div`
 
     color: #ff6600;
 
-    transform: matrix(0.97, 0, -0.28, 1, 0, 0);
+    /* transform: matrix(0.97, 0, -0.28, 1, 0, 0); */
   }
 `;
 const Askdetial = styled.ul`

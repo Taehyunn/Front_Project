@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { getJobIds } from "../componenets/Api";
+import { getJobIds } from "../componenets/utils/Api";
 import { JobtotalItem } from "../componenets/Job/JobtotalItem";
 
 const JobStyled = styled.div`
@@ -17,7 +17,7 @@ const JobStyled = styled.div`
 
     color: #ff6600;
 
-    transform: matrix(0.97, 0, -0.28, 1, 0, 0);
+    /* transform: matrix(0.97, 0, -0.28, 1, 0, 0); */
   }
 `;
 const Jobdetail = styled.ul`

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { getStory } from "../Api";
+import { getStory } from "../utils/Api";
 import styled from "styled-components";
 import { mapTime } from "../mapTime";
 import { Link } from "react-router-dom";
 
-const NewStyledItem = styled.div`
+export const NewStyledItem = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -14,6 +14,10 @@ const NewStyledItem = styled.div`
   div {
     display: flex;
     align-items: center;
+  }
+  a {
+    display: inline-block;
+    text-decoration: none;
   }
   .newmain_link {
     text-decoration: none;
@@ -66,14 +70,34 @@ const NewStyledItem = styled.div`
   }
   background: #ffffff;
 `;
+const Userinfo = styled.div`
+  color: #6b6b6b;
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 110%;
+  .totalItemby {
+    color: #6b6b6b;
+    font-family: "Pretendard";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 110%;
+  }
+  .totalItemby:hover {
+    color: #fd6106;
+  }
+`;
 
-export const NewtotalItem = ({ newlist }) => {
+function Newtotal({ newlist }) {
   const [newItem, setNewItem] = useState([]);
   const [newDetailUrl, setNewDetailUrl] = useState("");
-
+  const [newUserUrl, setnewUserUrl] = useState("");
   useEffect(() => {
     getStory(newlist).then((data) => data && setNewItem(data));
     setNewDetailUrl(`/New/${newlist}`);
+    setnewUserUrl(`/User/${newItem.by}`);
     return () => {
       setNewItem([]);
     };
@@ -81,25 +105,31 @@ export const NewtotalItem = ({ newlist }) => {
   const urlName = newItem.url?.slice(8).split("/")[0];
   return newItem && newItem.url ? (
     <NewStyledItem>
-      <li>
+      {newItem.url && (
         <a href={newItem.url} className="small_link" target="_blank">
           {urlName}
         </a>
-        <a href={newItem.url} className="newmain_link" target="_blank">
-          {newItem.title}
-        </a>
-        <div>
-          <span>{mapTime(newItem.time)}</span>
+      )}
+      <a href={newItem.url} className="newmain_link" target="_blank">
+        {newItem.title}
+      </a>
+      <Userinfo>
+        {newItem.score} points&nbsp;
+        <Link to={newUserUrl} className="totalItemby">
+          by {newItem.by}
+        </Link>
+      </Userinfo>
+      <div>
+        <span>{mapTime(newItem.time)}</span>
 
-          <Link to={newDetailUrl} className="newcomments">
-            {newItem.descendants ? <p>{newItem.descendants} comments</p> : null}
-          </Link>
-        </div>
-      </li>
+        <Link to={newDetailUrl} className="newcomments">
+          {newItem.descendants ? <p>{newItem.descendants} comments</p> : null}
+        </Link>
+      </div>
     </NewStyledItem>
   ) : null;
-};
-
+}
+export const NewtotalItem = React.memo(Newtotal);
 //descendants
 // return top && top.url ? (
 //   <li className={styles["Topli"]}>

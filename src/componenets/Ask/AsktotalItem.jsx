@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getStory } from "../Api";
+import { getStory } from "../utils/Api";
 import styled from "styled-components";
 import { mapTime } from "../mapTime";
 import { Link } from "react-router-dom";
@@ -14,6 +14,10 @@ const AskStyledItem = styled.div`
   div {
     display: flex;
     align-items: center;
+  }
+  a {
+    display: inline-block;
+    text-decoration: none;
   }
   .askmain_link {
     text-decoration: none;
@@ -66,16 +70,37 @@ const AskStyledItem = styled.div`
   }
   background: #ffffff;
 `;
+const Userinfo = styled.div`
+  color: #6b6b6b;
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 110%;
+  .askItemby {
+    color: #6b6b6b;
+    font-family: "Pretendard";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 110%;
+  }
+  .totalItemby:hover {
+    color: #fd6106;
+  }
+`;
 
-export const AsktotalItem = ({ asklist }) => {
+export function Asktotal({ asklist }) {
   const [askItem, setAskItem] = useState([]);
   const [askUrl, setAskUrl] = useState("");
   const [askDetail, setAskDetail] = useState("");
+  const [askUserUrl, setaskUserUrl] = useState("");
 
   useEffect(() => {
     getStory(asklist).then((data) => data && setAskItem(data));
     setAskUrl(`https://news.ycombinator.com/item?id=${asklist}`);
     setAskDetail(`/Ask/${asklist}`);
+    setaskUserUrl(`/User/${askItem.by}`);
     return () => {
       setAskItem([]);
       setAskUrl("");
@@ -93,6 +118,12 @@ export const AsktotalItem = ({ asklist }) => {
         <a href={askUrl} className="askmain_link" target="_blank">
           {askItem.title}
         </a>
+        <Userinfo>
+          {askItem.score} points&nbsp;
+          <Link to={askUserUrl} className="askItemby">
+            by {askItem.by}
+          </Link>
+        </Userinfo>
         <div>
           <span>{mapTime(askItem.time)}</span>
           <Link to={askDetail} className="askcomments">
@@ -102,22 +133,7 @@ export const AsktotalItem = ({ asklist }) => {
       </li>
     </AskStyledItem>
   ) : null;
-};
-
-//descendants
-// return top && top.url ? (
-//   <li className={styles["Topli"]}>
-//     <a href={top.url} target="_blank">
-//       <p>{top.title}</p>
-//     </a>
-//     <span>
-//       By :{top.by} <br />
-//       Posted:{top.time}
-//     </span>
-//     <a href="#" className={styles["comments"]}>
-//       comments : {top.kids ? top.kids.length : null}
-//     </a>
-//   </li>
-// ) : null;
+}
+export const AsktotalItem = React.memo(Asktotal);
 
 //by, descemdamts, id, kids, score, text, title, time ,type:story

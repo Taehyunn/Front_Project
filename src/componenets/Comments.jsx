@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { getStory } from "../componenets/Api";
+import { getStory } from "../componenets/utils/Api";
 import styled from "styled-components";
-import Parser from "html-react-parser";
 import { mapTime } from "../componenets/mapTime";
 import { InComments } from "./InComments";
 

@@ -5,10 +5,15 @@ export const Search = () => {
   return (
     <div className={styles["header"]}>
       <Link to="/" className={styles["linkgo"]}>
-        <img src={require("../../public/img/sveltelogo.png")} alt="로고" />
+        <img
+          src={require("../../public/img/reactlogo1.png")}
+          width="20"
+          height="25"
+          alt="로고"
+        />
       </Link>
       <p>
-        svelte
+        react
         <br />
         hacker
         <br />

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import styles from "../../CSS/TopList.module.scss";
-import { getStoryIds } from "../Api";
-import { TopItem } from "./TopItem";
+import { getStoryIds } from "../utils/Api";
+import TopItem from "./TopItem";
 import useIsMount from "../useIsMount";
-
+import { Loading } from "../Loading";
 const StyledTopLink = styled(Link)`
   position: absolute;
   width: 30px;
@@ -25,33 +25,34 @@ const StyledTopLink = styled(Link)`
   color: #fd6106;
 `;
 
-export const TopList = () => {
+export default function TopList() {
   const [storyIds, setStoryIds] = useState([]);
-
-  const [isError, setisError] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [isError, setisError] = useState();
 
   const isMount = useIsMount();
   useEffect(() => {
     try {
-      setisError(false);
-
       if (isMount.current) {
+        setisError(false);
         getStoryIds().then((data) => setStoryIds(data));
       }
     } catch (e) {
       setisError(true);
     }
-
-    getStoryIds();
+    setLoading(false);
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 1000);
     return () => {
       setStoryIds();
     };
   }, [isMount]);
-
+  // if (loading) return <div>로딩중...</div>;
   if (isError) return <div>에러가 발생했습니다</div>;
 
   return (
-    <div>
+    <>
       <div className={styles["banner"]}>
         <h2>TOP 5</h2>
         <p>Find out most hot isues</p>
@@ -59,11 +60,15 @@ export const TopList = () => {
           <StyledTopLink to="/Top">More</StyledTopLink>
         </span>
       </div>
-      <ul className={styles["Topul"]}>
-        {storyIds.slice(0, 5).map((storyId) => (
-          <TopItem key={storyId} storyId={storyId} isMount={isMount} />
-        ))}
-      </ul>
-    </div>
+      {loading ? (
+        <div>로딩중...</div> //로딩스피너 들어갈 자리.
+      ) : (
+        <ul className={styles["Topul"]}>
+          {storyIds.slice(0, 5).map((storyId) => (
+            <TopItem key={storyId} storyId={storyId} isMount={isMount} />
+          ))}
+        </ul>
+      )}
+    </>
   );
-};
+}

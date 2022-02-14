@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { getStory, storyUrl } from "../Api";
+import React, { useState, useEffect, useMemo } from "react";
+import { getStory, storyUrl } from "../utils/Api";
 import styled from "styled-components";
 import { mapTime } from "../mapTime";
 import { Link } from "react-router-dom";
@@ -93,33 +93,33 @@ const Userinfo = styled.div`
   }
 `;
 
-export const ToptotalItem = ({ toplist }) => {
+export function Toptotal({ toplist }) {
   const [totalItem, setTotal] = useState([]);
   const [detailUrl, setDetailUrl] = useState("");
   const [topUserUrl, settopUserUrl] = useState("");
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true);
     getStory(toplist).then((data) => data && setTotal(data));
     setDetailUrl(`/Top/${toplist}`);
+    settopUserUrl(`/User/${totalItem.by}`);
+    setLoading;
     return () => {
       setTotal([]);
-    };
-  }, []);
-  useEffect(() => {
-    settopUserUrl(`/User/${totalItem.by}`);
-    return () => {
       settopUserUrl("");
     };
-  }, [totalItem.by]);
+  }, []);
 
   const urlName = totalItem.url?.slice(8).split("/")[0];
 
   return totalItem && totalItem.url ? (
     <TotalItemStyled>
       <li>
-        <a href={totalItem.url} className="small_link" target="_blank">
-          {urlName}
-        </a>
+        {totalItem.url && (
+          <a href={totalItem.url} className="small_link" target="_blank">
+            {urlName}
+          </a>
+        )}
         <a href={totalItem.url} className="main_link" target="_blank">
           {totalItem.title}
         </a>
@@ -140,7 +140,8 @@ export const ToptotalItem = ({ toplist }) => {
       </li>
     </TotalItemStyled>
   ) : null;
-};
+}
+export const ToptotalItem = React.memo(Toptotal);
 
 //descendants
 // return top && top.url ? (

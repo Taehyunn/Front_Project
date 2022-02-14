@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import askStyles from "../../CSS/AskList.module.scss";
-import { getAskIds } from "../Api";
+import { getAskIds } from "../utils/Api";
 import { AskItem } from "./AskItem";
 import useIsMount from "../useIsMount";
 
@@ -25,7 +25,7 @@ const StyledAskLink = styled(Link)`
   color: #db00ff;
 `;
 
-export const AskList = () => {
+export default function AskList() {
   const [askIds, setAskIds] = useState([]);
   const [isError, setisError] = useState(false);
   const isMount = useIsMount();
@@ -33,9 +33,7 @@ export const AskList = () => {
     try {
       setisError(false);
 
-      if (isMount.current) {
-        getAskIds().then((data) => setAskIds(data));
-      }
+      getAskIds().then((data) => setAskIds(data));
     } catch (e) {
       setisError(true);
     }
@@ -44,7 +42,7 @@ export const AskList = () => {
     return () => {
       setAskIds();
     };
-  }, [isMount]);
+  }, []);
 
   if (isError) return <div>에러가 발생했습니다</div>;
 
@@ -64,4 +62,4 @@ export const AskList = () => {
       </ul>
     </div>
   );
-};
+}

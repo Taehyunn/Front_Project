@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { getUser } from "../componenets/Api";
+import { getUser } from "../componenets/utils/Api";
 import { mapTime } from "../componenets/mapTime";
 
 const UserInfowrap = styled.div`

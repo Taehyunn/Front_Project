@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import jobStyles from "../../CSS/JobList.module.scss";
-import { getJobIds } from "../Api";
+import { getJobIds } from "../utils/Api";
 import { JobItem } from "./JobItem";
 import useIsMount from "../useIsMount";
 
@@ -25,7 +25,7 @@ const StyledJobLink = styled(Link)`
   color: #febb10;
 `;
 
-export const JobList = () => {
+export default function JobList() {
   const [jobIds, setJobIds] = useState([]);
   const [isError, setisError] = useState(false);
   const isMount = useIsMount();
@@ -33,18 +33,15 @@ export const JobList = () => {
     try {
       setisError(false);
 
-      if (isMount.current) {
-        getJobIds().then((data) => setJobIds(data));
-      }
+      getJobIds().then((data) => setJobIds(data));
     } catch (e) {
       setisError(true);
     }
-
     getJobIds();
     return () => {
       setJobIds();
     };
-  }, [isMount]);
+  }, []);
 
   if (isError) return <div>에러가 발생했습니다</div>;
 
@@ -64,4 +61,4 @@ export const JobList = () => {
       </ul>
     </div>
   );
-};
+}

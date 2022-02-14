@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getStory } from "../Api";
+import { getStory } from "../utils/Api";
 import askStyles from "../../CSS/AskItem.module.scss";
 import { Link } from "react-router-dom";
 
@@ -9,15 +9,14 @@ export const AskItem = ({ askId, isMount }) => {
   const [askDetail, setAskDetail] = useState("");
 
   useEffect(() => {
-    if (isMount.current) {
-      getStory(askId).then((data) => data && setAsk(data));
-      setAskUrl(`https://news.ycombinator.com/item?id=${askId}`);
-      setAskDetail(`/Ask/${askId}`);
-    }
+    getStory(askId).then((data) => data && setAsk(data));
+    setAskUrl(`https://news.ycombinator.com/item?id=${askId}`);
+    setAskDetail(`/Ask/${askId}`);
+
     return () => {
       setAsk();
     };
-  }, [isMount]);
+  }, []);
 
   //target=”_blank” 새탭에서 열람.
   return asks ? (

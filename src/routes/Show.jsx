@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { getShowIds } from "../componenets/Api";
+import { getShowIds } from "../componenets/utils/Api";
 import { ShowtotalItem } from "../componenets/Show/ShowtotalItem";
 const ShowStyled = styled.div`
   padding: 64.7px 0 10.7px 11.7px;
@@ -16,7 +16,7 @@ const ShowStyled = styled.div`
 
     color: #ff6600;
 
-    transform: matrix(0.97, 0, -0.28, 1, 0, 0);
+    /* transform: matrix(0.97, 0, -0.28, 1, 0, 0); */
   }
 `;
 const Showdetial = styled.ul`

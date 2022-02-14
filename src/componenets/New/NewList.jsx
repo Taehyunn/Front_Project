@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import newStyles from "../../CSS/NewList.module.scss";
-import { getNewIds } from "../Api";
+import { getNewIds } from "../utils/Api";
 import { NewItem } from "./NewItem";
 import useIsMount from "../useIsMount";
 
@@ -25,7 +25,7 @@ const StyledNewLink = styled(Link)`
   color: #7b61ff;
 `;
 
-export const NewList = () => {
+export default function NewList() {
   const [newIds, setNewIds] = useState([]);
   const [isError, setisError] = useState(false);
   const isMount = useIsMount();
@@ -33,9 +33,7 @@ export const NewList = () => {
     try {
       setisError(false);
 
-      if (isMount.current) {
-        getNewIds().then((data) => setNewIds(data));
-      }
+      getNewIds().then((data) => setNewIds(data));
     } catch (e) {
       setisError(true);
     }
@@ -44,7 +42,7 @@ export const NewList = () => {
     return () => {
       setNewIds();
     };
-  }, [isMount]);
+  }, []);
 
   if (isError) return <div>에러가 발생했습니다</div>;
 
@@ -64,4 +62,4 @@ export const NewList = () => {
       </ul>
     </div>
   );
-};
+}

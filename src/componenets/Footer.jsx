@@ -1,61 +1,78 @@
+import React from "react";
 import styles from "../CSS/Footer.module.scss";
-import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { Link, NavLink } from "react-router-dom";
+
+const NavLi = styled(NavLink)`
+  &.top_navlink {
+    /* display: block; */
+    content: url("/img/icon_top1.png");
+  }
+  &.new_navlink {
+    content: url("/img/icon_new1.png");
+  }
+  &.ask_navlink {
+    content: url("/img/icon_ask1.png");
+  }
+  &.show_navlink {
+    content: url("/img/icon_show1.png");
+  }
+  &.job_navlink {
+    content: url("/img/icon_job1.png");
+  }
+`;
 
 export const Footer = () => {
   return (
     <ul className={styles["footer"]}>
       <li>
-        <Link to="/Top" className={styles["top_icon"]}>
+        <NavLi to="/Top" activeClassName="top_navlink">
           <img src={require("../../public/img/icon_top.png")} alt="top_icon" />
-          <img
-            src={require("../../public/img/icon_top1.png")}
-            alt="top1"
-            className={styles["top1"]}
-          />
-        </Link>
+          {/* <img src="img/icon_top1.png" alt="new1" className={styles["top1"]} /> */}
+        </NavLi>
       </li>
       <li>
-        <Link to="/New" className={styles["new_icon"]}>
+        <NavLi to="/New" activeClassName="new_navlink">
           <img src={require("../../public/img/icon_new.png")} alt="new_icon" />
-          <img
+          {/* <img
             src={require("../../public/img/icon_new1.png")}
             alt="new1"
             className={styles["new1"]}
-          />
-        </Link>
+          /> */}
+        </NavLi>
       </li>
       <li>
-        <Link to="/Ask" className={styles["ask_icon"]}>
+        <NavLi to="/Ask" activeClassName="ask_navlink">
           <img src={require("../../public/img/icon_ask.png")} alt="ask_icon" />
-          <img
+          {/* <img
             src={require("../../public/img/icon_ask1.png")}
             alt="ask1"
             className={styles["ask1"]}
-          />
-        </Link>
+          /> */}
+        </NavLi>
       </li>
       <li>
-        <Link to="/Show" className={styles["show_icon"]}>
+        <NavLi to="/Show" activeClassName="show_navlink">
           <img
             src={require("../../public/img/icon_show.png")}
             alt="show_icon"
           />
-          <img
+          {/* <img
             src={require("../../public/img/icon_show1.png")}
             alt="show1"
             className={styles["show1"]}
-          />
-        </Link>
+          /> */}
+        </NavLi>
       </li>
       <li>
-        <Link to="/Job" className={styles["job_icon"]}>
+        <NavLi to="/Job" activeClassName="job_navlink">
           <img src={require("../../public/img/icon_job.png")} alt="job_icon" />
-          <img
+          {/* <img
             src={require("../../public/img/icon_job1.png")}
             alt="show1"
             className={styles["job1"]}
-          />
-        </Link>
+          /> */}
+        </NavLi>
       </li>
     </ul>
   );

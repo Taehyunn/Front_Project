@@ -1,31 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { getStory } from "../Api";
+import { getStory } from "../utils/Api";
 import { Link } from "react-router-dom";
 import styles from "../../CSS/TopItem.module.scss";
 
-export const TopItem = ({ storyId, isMount }) => {
+export default function TopItem({ storyId, isMount }) {
   const [top, setTop] = useState([]);
   const [topUrl, setTopUrl] = useState("");
   const [topUserUrl, settopUserUrl] = useState("");
+
+  const [isError, setisError] = useState();
   useEffect(() => {
-    if (isMount.current) {
-      getStory(storyId).then((data) => data && setTop(data));
-      setTopUrl(`/Top/${storyId}`);
+    try {
+      if (isMount.current) {
+        setisError(false);
+        getStory(storyId).then((data) => data && setTop(data));
+        setTopUrl(`/Top/${storyId}`);
+        settopUserUrl(`/User/${top.by}`);
+      }
+    } catch (e) {
+      setisError(true);
     }
+
     return () => {
       setTop();
+      settopUserUrl("");
     };
   }, [isMount]);
 
-  useEffect(() => {
-    settopUserUrl(`/User/${top.by}`);
-    return () => {
-      settopUserUrl("");
-    };
-  }, [top.by]);
+  if (isError) return <div>에러가 발생했습니다</div>;
 
-  //target=”_blank” 새탭에서 열람.
-  return top && top.url ? (
+  return (
     <li className={styles["Topli"]} key={top.id}>
       <a href={top.url} className={styles["topTitle"]} target="_blank">
         <p>{top.title}</p>
@@ -42,5 +46,5 @@ export const TopItem = ({ storyId, isMount }) => {
         </Link>
       ) : null}
     </li>
-  ) : null;
-};
+  );
+}

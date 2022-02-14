@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getStory } from "../Api";
+import { getStory } from "../utils/Api";
 import styled from "styled-components";
 import { mapTime } from "../mapTime";
 import { Link } from "react-router-dom";
@@ -67,7 +67,7 @@ const JobStyledItem = styled.div`
   background: #ffffff;
 `;
 
-export const JobtotalItem = ({ joblist }) => {
+export function Jobtotal({ joblist }) {
   const [jobItem, setJobItem] = useState([]);
   const [jobDetailUrl, setJobDetailUrl] = useState("");
 
@@ -85,9 +85,11 @@ export const JobtotalItem = ({ joblist }) => {
   return jobItem && jobItem.url ? (
     <JobStyledItem>
       <li>
-        <a href={jobItem.url} className="small_link" target="_blank">
-          {urlName}
-        </a>
+        {jobItem.url && (
+          <a href={jobItem.url} className="small_link" target="_blank">
+            {urlName}
+          </a>
+        )}
         <a href={jobItem.url} className="jobmain_link" target="_blank">
           {jobItem.title}
         </a>
@@ -101,4 +103,5 @@ export const JobtotalItem = ({ joblist }) => {
       </li>
     </JobStyledItem>
   ) : null;
-};
+}
+export const JobtotalItem = React.memo(Jobtotal);

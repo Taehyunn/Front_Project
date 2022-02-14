@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { getNewIds } from "../componenets/Api";
+import { getNewIds } from "../componenets/utils/Api";
 import { NewtotalItem } from "../componenets/New/NewtotalItem";
 
 const NewStyled = styled.div`
-  padding: 64.7px 0 10.7px 11.7px;
+  padding: 64.7px 0 10.7px 20px;
   border-bottom: 1px solid #e8e8ed;
   h1 {
     font-family: Pretendard;
@@ -17,7 +17,7 @@ const NewStyled = styled.div`
 
     color: #ff6600;
 
-    transform: matrix(0.97, 0, -0.28, 1, 0, 0);
+    /* transform: matrix(0.97, 0, -0.28, 1, 0, 0); */
   }
 `;
 const Newdetial = styled.ul`

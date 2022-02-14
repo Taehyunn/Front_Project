@@ -1,6 +1,6 @@
 import "./styles.css";
 import { Route } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Main from "./routes/Main";
 import Top from "./routes/Top";
 import New from "./routes/New";
@@ -10,32 +10,26 @@ import Job from "./routes/Job";
 import Detail from "./routes/Detail";
 import User from "./routes/User";
 
-// import { Loading } from "../src/componenets/Loading";
-
 export default function App() {
-  const [listName, setListName] = useState();
-
   return (
-    <>
-      <div className="App">
-        <Route path="/" exact component={Main} />
-        <Route path="/Top/:id" component={Detail} />
-        <Route path="/Top" exact component={Top} />
+    <div className="App">
+      <Route path="/" exact component={Main} />
+      <Route path="/Top/:id" component={Detail} />
+      <Route path="/Top" exact component={Top} />
 
-        <Route path="/New/:id" component={Detail} />
-        <Route path="/New" exact component={New} />
+      <Route path="/New/:id" component={Detail} />
+      <Route path="/New" exact component={New} />
 
-        <Route path="/Ask/:id" component={Detail} />
-        <Route path="/Ask" exact component={Ask} />
+      <Route path="/Ask/:id" component={Detail} />
+      <Route path="/Ask" exact component={Ask} />
 
-        <Route path="/Show/:id" component={Detail} />
-        <Route path="/Show" exact component={Show} />
+      <Route path="/Show/:id" component={Detail} />
+      <Route path="/Show" exact component={Show} />
 
-        <Route path="/Job/:id" component={Detail} />
-        <Route path="/Job" exact component={Job} />
-        <Route path="/User/:id" component={User} />
-      </div>
-    </>
+      <Route path="/Job/:id" component={Detail} />
+      <Route path="/Job" exact component={Job} />
+      <Route path="/User/:id" component={User} />
+    </div>
   );
 }
 

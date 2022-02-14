@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getStory } from "../Api";
+import { getStory } from "../utils/Api";
 import { Link } from "react-router-dom";
 import newStyles from "../../CSS/NewItem.module.scss";
 
@@ -9,21 +9,15 @@ export const NewItem = ({ newId, isMount }) => {
   const [newUserUrl, setnewUserUrl] = useState("");
 
   useEffect(() => {
-    if (isMount.current) {
-      getStory(newId).then((data) => data && setNew(data));
-      setNewUrl(`/New/${newId}`);
-    }
-    return () => {
-      setNew();
-    };
-  }, [isMount]);
-
-  useEffect(() => {
+    getStory(newId).then((data) => data && setNew(data));
+    setNewUrl(`/New/${newId}`);
     setnewUserUrl(`/User/${news.by}`);
     return () => {
-      setnewUserUrl("");
+      setNew();
+      setNewUrl();
+      setnewUserUrl();
     };
-  }, [news.by]);
+  }, []);
 
   //target=”_blank” 새탭에서 열람.
   return news && news.url ? (

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import showStyles from "../../CSS/ShowList.module.scss";
-import { getShowIds } from "../Api";
+import { getShowIds } from "../utils/Api";
 import { ShowItem } from "./ShowItem";
 import useIsMount from "../useIsMount";
 
@@ -25,7 +25,7 @@ const StyledShowLink = styled(Link)`
   color: #69a075;
 `;
 
-export const ShowList = () => {
+export default function ShowList() {
   const [showIds, setShowIds] = useState([]);
   const [isError, setisError] = useState(false);
   const isMount = useIsMount();
@@ -63,4 +63,4 @@ export const ShowList = () => {
       </ul>
     </div>
   );
-};
+}

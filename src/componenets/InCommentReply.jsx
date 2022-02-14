@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getStory } from "../componenets/Api";
+import { getStory } from "../componenets/utils/Api";
 import axios from "axios";
 import styled from "styled-components";
 import { mapTime } from "../componenets/mapTime";

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getStory } from "../Api";
+import { getStory } from "../utils/Api";
 import showStyles from "../../CSS/ShowItem.module.scss";
 import { Link } from "react-router-dom";
 
@@ -8,20 +8,15 @@ export const ShowItem = ({ showId, isMount }) => {
   const [showUrl, setShwoUrl] = useState("");
   const [showUserUrl, setshowUserUrl] = useState("");
   useEffect(() => {
-    if (isMount.current) {
-      getStory(showId).then((data) => data && setShow(data));
-      setShwoUrl(`/Show/${showId}`);
-    }
-    return () => {
-      setShow();
-    };
-  }, [isMount]);
-  useEffect(() => {
+    getStory(showId).then((data) => data && setShow(data));
+    setShwoUrl(`/Show/${showId}`);
     setshowUserUrl(`/User/${shows.by}`);
     return () => {
+      setShow();
       setshowUserUrl("");
+      setShwoUrl();
     };
-  }, [shows.by]);
+  }, []);
 
   //target=”_blank” 새탭에서 열람.
   return shows && shows.url ? (
