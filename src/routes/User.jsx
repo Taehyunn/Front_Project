@@ -4,10 +4,19 @@ import { getUser } from "../componenets/utils/Api";
 import { mapTime } from "../componenets/mapTime";
 
 const UserInfowrap = styled.div`
-  padding-top: 59px;
-  div {
-    margin-bottom: 5px;
-  }
+  padding: 74px 20px 0 20px;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+
+  color: #000000;
+`;
+const Usertotal = styled.div`
+  border: 2px solid black;
+  padding: 10px;
 `;
 
 export default function User(props) {
@@ -21,13 +30,17 @@ export default function User(props) {
   }, []);
   return (
     <UserInfowrap>
-      <div className="userinfoid">user: {userDetail.id}</div>
-      <div className="usercreated">created: {mapTime(userDetail.created)}</div>
-      <div className="userkarma">karma: {userDetail.karma} </div>
-      <div className="userabout">
-        about:
-        <div dangerouslySetInnerHTML={{ __html: userDetail.about }}></div>
-      </div>
+      <Usertotal>
+        user: {userDetail.id}
+        <div className="usercreated">
+          created: {mapTime(userDetail.created)}
+        </div>
+        <div className="userkarma">karma: {userDetail.karma} </div>
+        <div className="userabout">
+          about:
+          <div dangerouslySetInnerHTML={{ __html: userDetail.about }}></div>
+        </div>
+      </Usertotal>
     </UserInfowrap>
   );
 }
