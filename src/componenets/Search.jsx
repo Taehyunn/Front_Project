@@ -1,22 +1,7 @@
 import React, { useState } from "react";
-import styles from "../CSS/Search.module.scss";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { SearchFilter } from "../routes/SearchFilter";
 
-// const horizontalCenter = css`
-//   position: absolute;
-//   top: 50%;
-//   transform: translateY(-50%);
-// `;
-// const SearchIcon = styled.span`
-//   ${horizontalCenter}
-//   right: 18px;
-//   display: inline-block;
-//   overflow: hidden;
-//   color: transparent;
-//   vertical-align: middle;
-// `;
 const SearchHeader = styled.div`
   position: fixed;
   display: flex;
@@ -89,7 +74,7 @@ const SearchHeader = styled.div`
   }
 `;
 
-export const Search = () => {
+export default function Search() {
   const [visible, setVisible] = useState(false);
   const [text, setText] = useState("");
   const handleChange = (e) => {
@@ -131,6 +116,6 @@ export const Search = () => {
       </div>
     </SearchHeader>
   );
-};
+}
 
 //로고 차후 수정.
