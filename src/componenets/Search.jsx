@@ -91,9 +91,21 @@ const SearchHeader = styled.div`
 
 export const Search = () => {
   const [visible, setVisible] = useState(false);
-
+  const [text, setText] = useState("");
+  const handleChange = (e) => {
+    setText(e.target.value);
+  };
+  const onReset = () => {
+    setVisible(!visible);
+    setText("");
+  };
+  const onCheckEnter = (e) => {
+    if (e.key === "Enter") {
+      onReset();
+    }
+  };
   return (
-    <SearchHeader>
+    <SearchHeader onKeyPress={onCheckEnter}>
       <Link to="/" className="linkgo">
         <img src="/img/reactlogo.png" width="20" height="25" alt="로고" />
       </Link>
@@ -107,16 +119,14 @@ export const Search = () => {
       </p>
       <div className="search-box">
         <Link to="#" className="searchlink">
-          <img
-            src="/img/search.png"
-            alt="검색"
-            onClick={() => setVisible(!visible)}
-          />
+          <img src="/img/search.png" alt="검색" onClick={onReset} />
         </Link>
         <input
+          value={text}
           type="text"
-          className={visible ? "searchinput focused" : "searchinput"}
+          className={visible ? "searchinput + focused" : "searchinput"}
           placeholder="검색어를 입력해 주세요"
+          onChange={handleChange}
         />
       </div>
     </SearchHeader>
