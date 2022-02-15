@@ -9,11 +9,13 @@ import Show from "./routes/Show";
 import Job from "./routes/Job";
 import Detail from "./routes/Detail";
 import User from "./routes/User";
-// import {SearchFilter} from "./routes/SearchFilter"
+import Footer from "./componenets/Footer";
+import Search from "./componenets/Search";
 
 export default function App() {
   return (
     <div className="App">
+      <Search />
       <Route path="/" exact component={Main} />
       <Route path="/Top/:id" component={Detail} />
       <Route path="/Top" exact component={Top} />
@@ -30,6 +32,7 @@ export default function App() {
       <Route path="/Job/:id" component={Detail} />
       <Route path="/Job" exact component={Job} />
       <Route path="/User/:id" component={User} />
+      <Footer />
     </div>
   );
 }

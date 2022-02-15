@@ -22,7 +22,7 @@ const NavLi = styled(NavLink)`
   }
 `;
 
-export const Footer = () => {
+export default function Footer() {
   return (
     <ul className={styles["footer"]}>
       <li>
@@ -73,4 +73,4 @@ export const Footer = () => {
       </li>
     </ul>
   );
-};
+}
