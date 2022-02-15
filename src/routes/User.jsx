@@ -4,8 +4,9 @@ import { getUser } from "../componenets/utils/Api";
 import { mapTime } from "../componenets/mapTime";
 
 const UserInfowrap = styled.div`
-  padding: 74px 20px 0 20px;
-
+  padding: 74px 20px 106px 20px;
+  height: 100%;
+  word-break: break-word;
   strong {
     font-family: "Roboto";
     font-style: normal;
@@ -17,8 +18,13 @@ const UserInfowrap = styled.div`
   }
 `;
 const Usertotal = styled.div`
-  border: 2px solid black;
-  padding: 10px;
+  border: 3px dashed black;
+  padding: 30px;
+  max-width: 100%;
+  word-break: break-word;
+  pre {
+    white-space: pre-wrap;
+  }
 `;
 
 export default function User(props) {
@@ -33,7 +39,9 @@ export default function User(props) {
   return (
     <UserInfowrap>
       <Usertotal>
-        <strong>user:</strong> {userDetail.id}
+        <div className="userid">
+          <strong>user:</strong> {userDetail.id}
+        </div>
         <div className="usercreated">
           <strong> created:</strong> {mapTime(userDetail.created)}
         </div>
