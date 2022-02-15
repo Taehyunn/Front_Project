@@ -6,13 +6,15 @@ import { mapTime } from "../componenets/mapTime";
 const UserInfowrap = styled.div`
   padding: 74px 20px 0 20px;
 
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 21px;
+  strong {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
 
-  color: #000000;
+    color: #000000;
+  }
 `;
 const Usertotal = styled.div`
   border: 2px solid black;
@@ -31,13 +33,15 @@ export default function User(props) {
   return (
     <UserInfowrap>
       <Usertotal>
-        user: {userDetail.id}
+        <strong>user:</strong> {userDetail.id}
         <div className="usercreated">
-          created: {mapTime(userDetail.created)}
+          <strong> created:</strong> {mapTime(userDetail.created)}
         </div>
-        <div className="userkarma">karma: {userDetail.karma} </div>
+        <div className="userkarma">
+          <strong>karma:</strong> {userDetail.karma}{" "}
+        </div>
         <div className="userabout">
-          about:
+          <strong>about:</strong>
           <div dangerouslySetInnerHTML={{ __html: userDetail.about }}></div>
         </div>
       </Usertotal>
