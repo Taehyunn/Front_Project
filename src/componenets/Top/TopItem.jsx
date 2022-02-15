@@ -34,7 +34,7 @@ export default function TopItem({ storyId, isMount }) {
 
   if (isError) return <div>에러가 발생했습니다</div>;
 
-  return (
+  return top.url && top.title ? (
     <li className={styles["Topli"]} key={top.id}>
       <a href={top.url} className={styles["topTitle"]} target="_blank">
         <p>{top.title}</p>
@@ -51,5 +51,5 @@ export default function TopItem({ storyId, isMount }) {
         </Link>
       ) : null}
     </li>
-  );
+  ) : null;
 }

@@ -125,9 +125,11 @@ export function Toptotal({ toplist }) {
             {urlName}
           </a>
         )}
-        <a href={totalItem.url} className="main_link" target="_blank">
-          {totalItem.title}
-        </a>
+        {totalItem.title && (
+          <a href={totalItem.url} className="main_link" target="_blank">
+            {totalItem.title}
+          </a>
+        )}
         <Userinfo>
           {totalItem.score} points&nbsp;
           <Link to={topUserUrl} className="totalItemby">

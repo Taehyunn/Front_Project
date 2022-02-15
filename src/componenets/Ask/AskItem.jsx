@@ -26,7 +26,7 @@ export const AskItem = ({ askId, isMount }) => {
   }, [asks.by]);
 
   //target=”_blank” 새탭에서 열람.
-  return asks ? (
+  return asks && asks.title ? (
     <li key={asks.id} className={askStyles["Askli"]}>
       <a href={askUrl} className={askStyles["askTitle"]} target="_blank">
         <p>{asks.title}</p>
