@@ -32,8 +32,11 @@ export const NewItem = ({ newId, isMount }) => {
         <p>{news.title}</p>
       </a>
       <div className={newStyles["newby"]}>
-        <Link to={newUserUrl}>By :{news.by}</Link> <br />
-        Posted:{news.time}
+        <Link to={newUserUrl} className={newStyles["newby-name"]}>
+          작성자 : {news.by}
+        </Link>{" "}
+        <br />
+        Posted : {news.time}
       </div>
       {news.descendants ? (
         <Link to={newUrl} className={newStyles["new_comments"]}>

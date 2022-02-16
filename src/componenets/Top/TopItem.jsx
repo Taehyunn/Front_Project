@@ -40,8 +40,11 @@ export default function TopItem({ storyId, isMount }) {
         <p>{top.title}</p>
       </a>
       <div className={styles["topby"]}>
-        <Link to={topUserUrl}>By :{top.by}</Link> <br />
-        Posted:{top.time}
+        <Link to={topUserUrl} className={styles["topby-name"]}>
+          작성자 : {top.by}
+        </Link>{" "}
+        <br />
+        Posted : {top.time}
       </div>
       {top.descendants ? (
         <Link to={topUrl} className={styles["top_comments"]}>

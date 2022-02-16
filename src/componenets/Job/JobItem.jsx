@@ -30,8 +30,11 @@ export const JobItem = ({ jobId, isMount }) => {
         <p>{jobs.title}</p>
       </a>
       <div className={jobStyles["jobby"]}>
-        <Link to={jobUserUrl}>By :{jobs.by}</Link> <br />
-        Posted:{jobs.time}
+        <Link to={jobUserUrl} className={jobStyles["jobby-name"]}>
+          작성자 : {jobs.by}
+        </Link>
+        <br />
+        Posted : {jobs.time}
       </div>
       {jobs.descendants ? (
         <Link to={jobUrl} className={jobStyles["job_comments"]}>

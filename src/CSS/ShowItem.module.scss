@@ -35,6 +35,12 @@
   .showby {
     padding:13px 0 16px;
     box-sizing: border-box;
+    font-family: "Roboto",sans-serif;
+    font-weight:bold;
+    font-size:14px;
+    .showby-name {
+      margin-bottom: 3px;
+    }
    
   }
   .showby>a:hover{

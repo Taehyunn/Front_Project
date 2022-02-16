@@ -30,8 +30,11 @@ export const ShowItem = ({ showId, isMount }) => {
         <p>{shows.title}</p>
       </a>
       <div className={showStyles["showby"]}>
-        <Link to={showUserUrl}>By :{shows.by}</Link> <br />
-        Posted:{shows.time}
+        <Link to={showUserUrl} className={showStyles["showby-name"]}>
+          작성자 : {shows.by}
+        </Link>
+        <br />
+        Posted : {shows.time}
       </div>
       {shows.descendants ? (
         <Link to={showUrl} className={showStyles["show_comments"]}>

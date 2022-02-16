@@ -32,8 +32,11 @@ export const AskItem = ({ askId, isMount }) => {
         <p>{asks.title}</p>
       </a>
       <div className={askStyles["askby"]}>
-        <Link to={askUserUrl}>By :{asks.by}</Link> <br />
-        Posted:{asks.time}
+        <Link to={askUserUrl} className={askStyles["askby-name"]}>
+          작성자 : {asks.by}
+        </Link>
+        <br />
+        Posted : {asks.time}
       </div>
       {asks.descendants ? (
         <Link to={askDetail} className={askStyles["ask_comments"]}>
