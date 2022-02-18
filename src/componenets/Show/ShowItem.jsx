@@ -4,9 +4,14 @@ import showStyles from "../../CSS/ShowItem.module.scss";
 import { Link } from "react-router-dom";
 
 export const ShowItem = ({ showId, isMount }) => {
-  const [shows, setShow] = useState([]);
+  const [shows, setShow] = useState(
+    () => JSON.parse(window.localStorage.getItem("shows")) || []
+  );
   const [showUrl, setShwoUrl] = useState("");
   const [showUserUrl, setshowUserUrl] = useState("");
+  useEffect(() => {
+    window.localStorage.setItem("shows", JSON.stringify(shows));
+  }, [shows]);
   useEffect(() => {
     getStory(showId).then((data) => data && setShow(data));
     setShwoUrl(`/Show/${showId}`);

@@ -26,9 +26,14 @@ const StyledNewLink = styled(Link)`
 `;
 
 export default function NewList() {
-  const [newIds, setNewIds] = useState([]);
+  const [newIds, setNewIds] = useState(
+    () => JSON.parse(window.localStorage.getItem("newIds")) || []
+  );
   const [isError, setisError] = useState(false);
   const isMount = useIsMount();
+  useEffect(() => {
+    window.localStorage.setItem("newIds", JSON.stringify(newIds));
+  }, [newIds]);
   useEffect(() => {
     try {
       setisError(false);

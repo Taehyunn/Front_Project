@@ -26,9 +26,14 @@ const StyledAskLink = styled(Link)`
 `;
 
 export default function AskList() {
-  const [askIds, setAskIds] = useState([]);
+  const [askIds, setAskIds] = useState(
+    () => JSON.parse(window.localStorage.getItem("askIds")) || []
+  );
   const [isError, setisError] = useState(false);
   const isMount = useIsMount();
+  useEffect(() => {
+    window.localStorage.setItem("askIds", JSON.stringify(askIds));
+  }, [askIds]);
   useEffect(() => {
     try {
       setisError(false);

@@ -26,9 +26,14 @@ const StyledShowLink = styled(Link)`
 `;
 
 export default function ShowList() {
-  const [showIds, setShowIds] = useState([]);
+  const [showIds, setShowIds] = useState(
+    () => JSON.parse(window.localStorage.getItem("showIds")) || []
+  );
   const [isError, setisError] = useState(false);
   const isMount = useIsMount();
+  useEffect(() => {
+    window.localStorage.setItem("showIds", JSON.stringify(showIds));
+  }, [showIds]);
   useEffect(() => {
     try {
       setisError(false);

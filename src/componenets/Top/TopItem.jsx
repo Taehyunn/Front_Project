@@ -3,19 +3,22 @@ import { getStory } from "../utils/Api";
 import { Link } from "react-router-dom";
 import styles from "../../CSS/TopItem.module.scss";
 
-export default function TopItem({ storyId, isMount }) {
-  const [top, setTop] = useState([]);
+export default function TopItem({ storyId }) {
+  const [top, setTop] = useState(
+    () => JSON.parse(window.localStorage.getItem("top")) || []
+  );
   const [topUrl, setTopUrl] = useState("");
   const [topUserUrl, settopUserUrl] = useState("");
 
   const [isError, setisError] = useState();
   useEffect(() => {
+    window.localStorage.setItem("top", JSON.stringify(top));
+  }, [top]);
+  useEffect(() => {
     try {
-      if (isMount.current) {
-        setisError(false);
-        getStory(storyId).then((data) => data && setTop(data));
-        setTopUrl(`/Top/${storyId}`);
-      }
+      setisError(false);
+      getStory(storyId).then((data) => data && setTop(data));
+      setTopUrl(`/Top/${storyId}`);
     } catch (e) {
       setisError(true);
     }
@@ -23,7 +26,7 @@ export default function TopItem({ storyId, isMount }) {
     return () => {
       setTop();
     };
-  }, [isMount]);
+  }, []);
 
   useEffect(() => {
     settopUserUrl(`/User/${top.by}`);

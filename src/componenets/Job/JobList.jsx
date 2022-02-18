@@ -26,9 +26,14 @@ const StyledJobLink = styled(Link)`
 `;
 
 export default function JobList() {
-  const [jobIds, setJobIds] = useState([]);
+  const [jobIds, setJobIds] = useState(
+    () => JSON.parse(window.localStorage.getItem("jobIds")) || []
+  );
   const [isError, setisError] = useState(false);
   const isMount = useIsMount();
+  useEffect(() => {
+    window.localStorage.setItem("jobIds", JSON.stringify(jobIds));
+  }, [jobIds]);
   useEffect(() => {
     try {
       setisError(false);

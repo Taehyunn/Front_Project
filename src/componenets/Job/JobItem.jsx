@@ -4,9 +4,14 @@ import jobStyles from "../../CSS/JobItem.module.scss";
 import { Link } from "react-router-dom";
 
 export const JobItem = ({ jobId, isMount }) => {
-  const [jobs, setJob] = useState([]);
+  const [jobs, setJob] = useState(
+    () => JSON.parse(window.localStorage.getItem("jobs")) || []
+  );
   const [jobUrl, setJobUrl] = useState("");
   const [jobUserUrl, setjobUserUrl] = useState("");
+  useEffect(() => {
+    window.localStorage.setItem("jobs", JSON.stringify(jobs));
+  }, [jobs]);
   useEffect(() => {
     getStory(jobId).then((data) => data && setJob(data));
     setJobUrl(`/Job/${jobId}`);

@@ -97,6 +97,7 @@ export function Toptotal({ toplist }) {
   const [totalItem, setTotal] = useState([]);
   const [detailUrl, setDetailUrl] = useState("");
   const [topUserUrl, settopUserUrl] = useState("");
+  // const [topfilterItem, setFilterItem] = useState([]);
 
   useEffect(() => {
     getStory(toplist).then((data) => data && setTotal(data));

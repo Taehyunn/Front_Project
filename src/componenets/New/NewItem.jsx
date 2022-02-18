@@ -4,10 +4,14 @@ import { Link } from "react-router-dom";
 import newStyles from "../../CSS/NewItem.module.scss";
 
 export const NewItem = ({ newId, isMount }) => {
-  const [news, setNew] = useState([]);
+  const [news, setNew] = useState(
+    () => JSON.parse(window.localStorage.getItem("news")) || []
+  );
   const [newUrl, setNewUrl] = useState("");
   const [newUserUrl, setnewUserUrl] = useState("");
-
+  useEffect(() => {
+    window.localStorage.setItem("news", JSON.stringify(news));
+  }, [news]);
   useEffect(() => {
     getStory(newId).then((data) => data && setNew(data));
     setNewUrl(`/New/${newId}`);

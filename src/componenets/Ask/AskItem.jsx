@@ -4,11 +4,15 @@ import askStyles from "../../CSS/AskItem.module.scss";
 import { Link } from "react-router-dom";
 
 export const AskItem = ({ askId, isMount }) => {
-  const [asks, setAsk] = useState([]);
+  const [asks, setAsk] = useState(
+    () => JSON.parse(window.localStorage.getItem("asks")) || []
+  );
   const [askUrl, setAskUrl] = useState("");
   const [askDetail, setAskDetail] = useState("");
   const [askUserUrl, setaskUserUrl] = useState("");
-
+  useEffect(() => {
+    window.localStorage.setItem("asks", JSON.stringify(asks));
+  }, [asks]);
   useEffect(() => {
     getStory(askId).then((data) => data && setAsk(data));
     setAskUrl(`https://news.ycombinator.com/item?id=${askId}`);

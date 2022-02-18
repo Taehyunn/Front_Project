@@ -24,7 +24,7 @@ const Topdetial = styled.ul`
 `;
 export default function Top() {
   const [toplists, setList] = useState([]);
-
+  //top id가 담긴 배열을 받아온다.
   useEffect(() => {
     getStoryIds().then((data) => setList(data));
     return () => {

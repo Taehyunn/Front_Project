@@ -26,11 +26,16 @@ const StyledTopLink = styled(Link)`
 `;
 
 export default function TopList() {
-  const [storyIds, setStoryIds] = useState([]);
+  const [storyIds, setStoryIds] = useState(
+    () => JSON.parse(window.localStorage.getItem("storyIds")) || []
+  );
   const [loading, setLoading] = useState(true);
   const [isError, setisError] = useState();
 
   const isMount = useIsMount();
+  useEffect(() => {
+    window.localStorage.setItem("storyIds", JSON.stringify(storyIds));
+  }, [storyIds]);
   useEffect(() => {
     try {
       if (isMount.current) {
