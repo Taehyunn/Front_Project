@@ -6,19 +6,19 @@ import { NavLink } from "react-router-dom";
 const NavLi = styled(NavLink)`
   &.top_navlink {
     /* display: block; */
-    content: url("/img/icon_top1.png");
+    content: url("img/icon_top1.png");
   }
   &.new_navlink {
-    content: url("/img/icon_new1.png");
+    content: url("img/icon_new1.png");
   }
   &.ask_navlink {
-    content: url("/img/icon_ask1.png");
+    content: url("img/icon_ask1.png");
   }
   &.show_navlink {
-    content: url("/img/icon_show1.png");
+    content: url("img/icon_show1.png");
   }
   &.job_navlink {
-    content: url("/img/icon_job1.png");
+    content: url("img/icon_job1.png");
   }
 `;
 
