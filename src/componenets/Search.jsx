@@ -96,10 +96,7 @@ export default function Search({ searchIds, text, setText }) {
   return (
     <SearchHeader>
       <Link to="/" className="linkgo">
-        <img
-          src="https://Taehyunn.github.io/Front_Project/img/reactlogo.png"
-          alt="로고"
-        />
+        <img src="/img/reactlogo.png" alt="로고" />
       </Link>
       <p>
         react
