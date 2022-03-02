@@ -73,7 +73,7 @@ export const Comments = ({ kid }) => {
     <div>
       <CommentsStyled>
         <User>
-          <img src="../img/user.png" alt="userfill" />
+          <img src="img/user.png" alt="userfill" />
           {listkid.by}
         </User>
         <UserText>

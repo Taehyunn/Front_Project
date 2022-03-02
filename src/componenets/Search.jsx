@@ -96,7 +96,7 @@ export default function Search({ searchIds, text, setText }) {
   return (
     <SearchHeader>
       <Link to="/" className="linkgo">
-        <img src={process.env.PUBLIC_URL + "/img/reatlogo.png"} alt="로고" />
+        <img src="img/reactlogo.png" alt="로고" />
       </Link>
       <p>
         react
@@ -108,7 +108,7 @@ export default function Search({ searchIds, text, setText }) {
       </p>
       <form className="search-box" onSubmit={handleSubmit}>
         <Link to="#" className="searchlink">
-          <img src="/img/search.png" alt="검색" onClick={onReset} />
+          <img src="img/search.png" alt="검색" onClick={onReset} />
         </Link>
         <input
           value={text}

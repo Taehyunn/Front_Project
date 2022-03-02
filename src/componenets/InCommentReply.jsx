@@ -76,7 +76,7 @@ export const InCommentReply = ({ Reply }) => {
     <div>
       <CommentsStyled>
         <User>
-          <img src="../img/vector.png" alt="userfill" />
+          <img src="img/vector.png" alt="userfill" />
           {commentReply.by}
         </User>
         <UserText>

@@ -27,19 +27,13 @@ export default function Footer() {
     <ul className={styles["footer"]}>
       <li>
         <NavLi to="/Top" activeClassName="top_navlink">
-          <img
-            src={process.env.PUBLIC_URL + "/img/icon_top.png"}
-            alt="top_icon"
-          />
+          <img src="img/icon_top.png" alt="top_icon" />
           {/* <img src="img/icon_top1.png" alt="new1" className={styles["top1"]} /> */}
         </NavLi>
       </li>
       <li>
         <NavLi to="/New" activeClassName="new_navlink">
-          <img
-            src={process.env.PUBLIC_URL + "/img/icon_new.png"}
-            alt="new_icon"
-          />
+          <img src="img/icon_new.png" alt="new_icon" />
           {/* <img
             src={require("../../public/img/icon_new1.png")}
             alt="new1"
