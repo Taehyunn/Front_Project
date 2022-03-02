@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { getStoryIds, baseUrl, topStoriesUrl } from "../componenets/utils/Api";
 import { ToptotalItem } from "../componenets/Top/ToptotalItem";
 import ReactLoading from "react-loading";
-import axios from "axios";
 
 const TopStyled = styled.div`
   padding: 64.7px 0 10.7px 20px;
