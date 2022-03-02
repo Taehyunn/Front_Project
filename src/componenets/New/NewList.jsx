@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import newStyles from "../../CSS/NewList.module.scss";
 import { getNewIds } from "../utils/Api";
 import { NewItem } from "./NewItem";
 import useIsMount from "../useIsMount";
@@ -23,6 +22,69 @@ const StyledNewLink = styled(Link)`
   text-align: center;
   letter-spacing: -0.8px;
   color: #7b61ff;
+`;
+const Banner = styled.div`
+  position: relative;
+  margin-top: 60px;
+  width: 100%;
+  height: 63px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  background-color: #7b61ff;
+
+  h2 {
+    position: absolute;
+    width: 66px;
+    height: 20px;
+    left: 20px;
+    top: 16px;
+    margin: 0;
+
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #ffffff;
+  }
+  p {
+    margin: 0;
+    position: absolute;
+    width: 109px;
+    height: 12px;
+    left: 19px;
+    top: 36px;
+
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 10px;
+    line-height: 12px;
+    /* identical to box height, or 120% */
+    text-align: center;
+    color: #ffffff;
+  }
+  span {
+    position: absolute;
+    width: 70px;
+    height: 30px;
+    top: 17px;
+    right: 16px;
+
+    background: #ffffff;
+    border-radius: 121px;
+  }
+`;
+const NewUl = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 0 60px 0;
+  padding: 0;
 `;
 
 export default function NewList() {
@@ -52,19 +114,19 @@ export default function NewList() {
   if (isError) return <div>에러가 발생했습니다</div>;
 
   return (
-    <div className={newStyles["Newlist"]}>
-      <div className={newStyles["banner"]}>
+    <>
+      <Banner>
         <h2>NEW 5</h2>
         <p>Fast, Fresh, Fashioable</p>
         <span>
           <StyledNewLink to="/New">More</StyledNewLink>
         </span>
-      </div>
-      <ul className={newStyles["Newul"]}>
+      </Banner>
+      <NewUl>
         {newIds.slice(0, 5).map((newId) => (
           <NewItem key={newId} newId={newId} isMount={isMount} />
         ))}
-      </ul>
-    </div>
+      </NewUl>
+    </>
   );
 }

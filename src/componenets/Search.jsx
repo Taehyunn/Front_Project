@@ -14,10 +14,15 @@ const SearchHeader = styled.div`
 
   .linkgo {
     display: block;
-    width: 20px;
-    height: 24.83px;
+    width: 24px;
+    height: 25px;
     margin: 15px 0px 14.17px 27px;
-    color: orange;
+    > img {
+      display: inline-block;
+      width: 24px;
+      height: 25px;
+      vertical-align: top;
+    }
   }
   p {
     width: 124px;
@@ -74,9 +79,8 @@ const SearchHeader = styled.div`
   }
 `;
 
-export default function Search() {
+export default function Search({ searchIds, text, setText }) {
   const [visible, setVisible] = useState(false);
-  const [text, setText] = useState("");
 
   const handleChange = (e) => {
     setText(e.target.value);
@@ -92,7 +96,7 @@ export default function Search() {
   return (
     <SearchHeader>
       <Link to="/" className="linkgo">
-        <img src="/img/reactlogo.png" width="20" height="25" alt="로고" />
+        <img src="/img/reactlogo.png" alt="로고" />
       </Link>
       <p>
         react

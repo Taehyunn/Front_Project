@@ -1,6 +1,6 @@
 import "./styles.css";
-import { Route } from "react-router-dom";
-import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import Main from "./routes/Main";
 import Top from "./routes/Top";
 import New from "./routes/New";
@@ -13,30 +13,45 @@ import Footer from "./componenets/Footer";
 import Search from "./componenets/Search";
 
 export default function App() {
+  const [text, setText] = useState("");
+
   return (
     <div className="App">
-      <Search />
-      <Route path="/" exact component={Main} />
-      <Route path="/Top/:id" component={Detail} />
-      <Route path="/Top" exact component={Top} />
+      <BrowserRouter>
+        <Search text={text} setText={setText} />
+        <Route path="/" exact component={Main} />
+        <Route path="/Top/:id" component={Detail} />
+        <Route path="/Top" exact component={Top} />
 
-      <Route path="/New/:id" component={Detail} />
-      <Route path="/New" exact component={New} />
+        <Route path="/New/:id" component={Detail} />
+        <Route path="/New" exact component={New} />
 
-      <Route path="/Ask/:id" component={Detail} />
-      <Route path="/Ask" exact component={Ask} />
+        <Route path="/Ask/:id" component={Detail} />
+        <Route path="/Ask" exact component={Ask} />
 
-      <Route path="/Show/:id" component={Detail} />
-      <Route path="/Show" exact component={Show} />
+        <Route path="/Show/:id" component={Detail} />
+        <Route path="/Show" exact component={Show} />
 
-      <Route path="/Job/:id" component={Detail} />
-      <Route path="/Job" exact component={Job} />
-      <Route path="/User/:id" component={User} />
-      <Footer />
+        <Route path="/Job/:id" component={Detail} />
+        <Route path="/Job" exact component={Job} />
+        <Route path="/User/:id" component={User} />
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }
 
+// .main {
+//   position: relative;
+//   left: 0;
+//   right: 0;
+//   margin: auto;
+//   text-align:center;
+//   padding: 60px 20px 0;
+//   box-sizing: border-box;
+//   // overflow-y: scroll ;//scroll hide
+
+// }
 /*
 <전체><Search>
 

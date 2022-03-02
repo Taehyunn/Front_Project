@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { getAskIds } from "../componenets/utils/Api";
 import { AsktotalItem } from "../componenets/Ask/AsktotalItem";
+import ReactLoading from "react-loading";
 
 const AskStyled = styled.div`
   padding: 64.7px 0 10.7px 11.7px;
@@ -23,12 +24,30 @@ const AskStyled = styled.div`
 const Askdetial = styled.ul`
   padding-bottom: 83px;
 `;
+const LoaderWrap = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
 
 export default function Ask() {
   const [asklists, setAskList] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    getAskIds().then((data) => setAskList(data));
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        await getAskIds().then((data) => setAskList(data));
+      } catch (err) {
+        throw err;
+      }
+      setLoading(false);
+    };
+
+    fetchData();
+
     return () => {
       setAskList([]);
     };
@@ -38,11 +57,17 @@ export default function Ask() {
       <AskStyled>
         <h1>Ask</h1>
       </AskStyled>
-      <Askdetial>
-        {asklists.slice(0, 20).map((asklist) => (
-          <AsktotalItem key={asklist} asklist={asklist} />
-        ))}
-      </Askdetial>
+      {loading ? (
+        <LoaderWrap>
+          <ReactLoading type="spin" color="#A593E0" />
+        </LoaderWrap>
+      ) : (
+        <Askdetial>
+          {asklists.slice(0, 10).map((asklist) => (
+            <AsktotalItem key={asklist} asklist={asklist} />
+          ))}
+        </Askdetial>
+      )}
     </div>
   );
 }

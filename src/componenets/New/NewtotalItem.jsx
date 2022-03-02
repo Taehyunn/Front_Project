@@ -94,6 +94,7 @@ function Newtotal({ newlist }) {
   const [newItem, setNewItem] = useState([]);
   const [newDetailUrl, setNewDetailUrl] = useState("");
   const [newUserUrl, setnewUserUrl] = useState("");
+
   useEffect(() => {
     getStory(newlist).then((data) => data && setNewItem(data));
     setNewDetailUrl(`/New/${newlist}`);

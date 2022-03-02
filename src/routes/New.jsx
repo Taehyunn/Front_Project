@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { getNewIds } from "../componenets/utils/Api";
 import { NewtotalItem } from "../componenets/New/NewtotalItem";
+import ReactLoading from "react-loading";
 
 const NewStyled = styled.div`
   padding: 64.7px 0 10.7px 20px;
@@ -23,26 +24,51 @@ const NewStyled = styled.div`
 const Newdetial = styled.ul`
   padding-bottom: 83px;
 `;
+const LoaderWrap = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
 
 export default function New() {
   const [newlists, setNewList] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    getNewIds().then((data) => setNewList(data));
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        await getNewIds().then((data) => setNewList(data));
+      } catch (err) {
+        throw err;
+      }
+      setLoading(false);
+    };
+
+    fetchData();
+
     return () => {
       setNewList([]);
     };
   }, []);
+
   return (
     <div>
       <NewStyled>
         <h1>NEW</h1>
       </NewStyled>
-      <Newdetial>
-        {newlists.slice(0, 20).map((newlist) => (
-          <NewtotalItem key={newlist} newlist={newlist} />
-        ))}
-      </Newdetial>
+      {loading ? (
+        <LoaderWrap>
+          <ReactLoading type="spin" color="#A593E0" />
+        </LoaderWrap>
+      ) : (
+        <Newdetial>
+          {newlists.slice(0, 10).map((newlist) => (
+            <NewtotalItem key={newlist} newlist={newlist} />
+          ))}
+        </Newdetial>
+      )}
     </div>
   );
 }

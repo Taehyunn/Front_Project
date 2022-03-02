@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import styled from "styled-components";
-import { getStoryIds } from "../componenets/utils/Api";
+import { getStoryIds, baseUrl, topStoriesUrl } from "../componenets/utils/Api";
 import { ToptotalItem } from "../componenets/Top/ToptotalItem";
+import ReactLoading from "react-loading";
+import axios from "axios";
 
 const TopStyled = styled.div`
   padding: 64.7px 0 10.7px 20px;
@@ -22,15 +24,35 @@ const TopStyled = styled.div`
 const Topdetial = styled.ul`
   padding-bottom: 83px;
 `;
+const LoaderWrap = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
 export default function Top() {
-  const [toplists, setList] = useState([]);
-  //top id가 담긴 배열을 받아온다.
+  const [toplists, setTopList] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
-    getStoryIds().then((data) => setList(data));
+    const topfetchData = async () => {
+      setLoading(true);
+      try {
+        await getStoryIds().then((data) => setTopList(data));
+      } catch (err) {
+        throw err;
+      }
+      setLoading(false);
+    };
+
+    topfetchData();
+
     return () => {
-      setList([]);
+      setTopList([]);
     };
   }, []);
+
   return (
     <div>
       <TopStyled>
@@ -40,6 +62,11 @@ export default function Top() {
         {toplists.slice(0, 10).map((toplist) => (
           <ToptotalItem key={toplist} toplist={toplist} />
         ))}
+        {loading && (
+          <LoaderWrap>
+            <ReactLoading type="spin" color="#A593E0" />
+          </LoaderWrap>
+        )}
       </Topdetial>
     </div>
   );

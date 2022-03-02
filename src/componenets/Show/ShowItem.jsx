@@ -1,7 +1,68 @@
 import React, { useState, useEffect } from "react";
 import { getStory } from "../utils/Api";
-import showStyles from "../../CSS/ShowItem.module.scss";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const ShowLi = styled.li`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: start;
+  margin-bottom: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 115px;
+  max-height: 200px;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+
+  img {
+    vertical-align: top;
+  }
+  a {
+    display: inline-block;
+    text-decoration: none;
+    color: #000000;
+  }
+
+  .showTitle {
+    text-align: start;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+  }
+  .showby {
+    padding: 13px 0 16px;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    .showby-name {
+      margin-bottom: 3px;
+    }
+  }
+  .showby > a:hover {
+    color: #69a075;
+  }
+  .show_comments {
+    display: inline-block;
+    display: flex;
+    align-items: center;
+    // width: 63px;
+    height: 10px;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 10px;
+    /* or 100% */
+    letter-spacing: -0.5px;
+
+    color: #69a075;
+  }
+`;
 
 export const ShowItem = ({ showId, isMount }) => {
   const [shows, setShow] = useState(
@@ -30,24 +91,24 @@ export const ShowItem = ({ showId, isMount }) => {
 
   //target=”_blank” 새탭에서 열람.
   return shows && shows.url ? (
-    <li key={shows.id} className={showStyles["Showli"]}>
-      <a href={shows.url} className={showStyles["showTitle"]} target="_blank">
+    <ShowLi>
+      <a href={shows.url} className="showTitle" target="_blank">
         <p>{shows.title}</p>
       </a>
-      <div className={showStyles["showby"]}>
-        <Link to={showUserUrl} className={showStyles["showby-name"]}>
+      <div className="showby">
+        <Link to={showUserUrl} className="showby-name">
           작성자 : {shows.by}
         </Link>
         <br />
         Posted : {shows.time}
       </div>
       {shows.descendants ? (
-        <Link to={showUrl} className={showStyles["show_comments"]}>
+        <Link to={showUrl} className="show_comments">
           <img src="img/comment_icon_show.png" alt="댓글" />
           &nbsp;
           {shows.descendants}
         </Link>
       ) : null}
-    </li>
+    </ShowLi>
   ) : null;
 };
