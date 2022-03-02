@@ -96,7 +96,7 @@ export default function Search({ searchIds, text, setText }) {
   return (
     <SearchHeader>
       <Link to="/" className="linkgo">
-        <img src={require(`../../public/img/reactlogo.png`)} alt="로고" />
+        <img src={process.env.PUBLIC_URL + "/img/reatlogo.png"} alt="로고" />
       </Link>
       <p>
         react
