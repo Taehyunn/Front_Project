@@ -96,7 +96,10 @@ export default function Search({ searchIds, text, setText }) {
   return (
     <SearchHeader>
       <Link to="/" className="linkgo">
-        <img src="/img/reactlogo.png" alt="로고" />
+        <img
+          src="https://uploads.codesandbox.io/uploads/user/6e3df596-86d7-48a2-b9ab-7a55714f0d8b/HOht-reactlogo+(2).png"
+          alt="로고"
+        />
       </Link>
       <p>
         react
@@ -108,7 +111,11 @@ export default function Search({ searchIds, text, setText }) {
       </p>
       <form className="search-box" onSubmit={handleSubmit}>
         <Link to="#" className="searchlink">
-          <img src="img/search.png" alt="검색" onClick={onReset} />
+          <img
+            src="https://rawcdn.githack.com/Taehyunn/Front_Project/232f269887695c9ebd2f75a022a70625caa94027/public/img/search.png"
+            alt="검색"
+            onClick={onReset}
+          />
         </Link>
         <input
           value={text}

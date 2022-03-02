@@ -76,7 +76,10 @@ export const InCommentReply = ({ Reply }) => {
     <div>
       <CommentsStyled>
         <User>
-          <img src="img/vector.png" alt="userfill" />
+          <img
+            src="https://rawcdn.githack.com/Taehyunn/Front_Project/232f269887695c9ebd2f75a022a70625caa94027/public/img/vector.png"
+            alt="userfill"
+          />
           {commentReply.by}
         </User>
         <UserText>

@@ -105,7 +105,10 @@ export const AskItem = ({ askId, isMount }) => {
       </div>
       {asks.descendants ? (
         <Link to={askDetail} className="ask_comments">
-          <img src="/img/comment_icon_ask.png" alt="댓글" />
+          <img
+            src="https://rawcdn.githack.com/Taehyunn/Front_Project/232f269887695c9ebd2f75a022a70625caa94027/public/img/comment_icon_ask.png"
+            alt="댓글"
+          />
           &nbsp;
           {asks.descendants}
         </Link>

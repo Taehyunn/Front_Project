@@ -108,7 +108,10 @@ export default function TopItem({ storyId }) {
       </div>
       {top.descendants ? (
         <Link to={topUrl} className="top_comments">
-          <img src="/img/comment_icon_top.png" alt="댓글" />
+          <img
+            src="https://rawcdn.githack.com/Taehyunn/Front_Project/232f269887695c9ebd2f75a022a70625caa94027/public/img/comment_icon_top.png"
+            alt="댓글"
+          />
           &nbsp;
           {top.descendants}
         </Link>

@@ -169,7 +169,10 @@ export default function Detail(props, { listName, setListName }) {
           <Gopage>
             <a href={GopageId} target="_blank">
               Go to page
-              <img src="../img/expand_right.png" alt="본 페이지로 이동" />
+              <img
+                src="https://rawcdn.githack.com/Taehyunn/Front_Project/7c291030a2cb356c25ef8c6523d854d4487a4d8f/public/img/expand_right.png"
+                alt="본 페이지로 이동"
+              />
             </a>
           </Gopage>
         </ul>
