@@ -1,6 +1,6 @@
 import "./styles.css";
 import { BrowserRouter, Route } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Main from "./routes/Main";
 import Top from "./routes/Top";
 import New from "./routes/New";
@@ -11,33 +11,36 @@ import Detail from "./routes/Detail";
 import User from "./routes/User";
 import Footer from "./componenets/Footer";
 import Search from "./componenets/Search";
+import TextContext from "./contexts/TextContext";
 
 export default function App() {
   const [text, setText] = useState("");
 
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Search text={text} setText={setText} />
-        <Route path="/" exact component={Main} />
-        <Route path="/Top/:id" component={Detail} />
-        <Route path="/Top" exact component={Top} />
+    <TextContext.Provider value={{ text, setText }}>
+      <div className="App">
+        <BrowserRouter>
+          <Search text={text} setText={setText} />
+          <Route path="/" exact component={Main} />
+          <Route path="/Top/:id" component={Detail} />
+          <Route path="/Top" exact component={Top} />
 
-        <Route path="/New/:id" component={Detail} />
-        <Route path="/New" exact component={New} />
+          <Route path="/New/:id" component={Detail} />
+          <Route path="/New" exact component={New} />
 
-        <Route path="/Ask/:id" component={Detail} />
-        <Route path="/Ask" exact component={Ask} />
+          <Route path="/Ask/:id" component={Detail} />
+          <Route path="/Ask" exact component={Ask} />
 
-        <Route path="/Show/:id" component={Detail} />
-        <Route path="/Show" exact component={Show} />
+          <Route path="/Show/:id" component={Detail} />
+          <Route path="/Show" exact component={Show} />
 
-        <Route path="/Job/:id" component={Detail} />
-        <Route path="/Job" exact component={Job} />
-        <Route path="/User/:id" component={User} />
-        <Footer />
-      </BrowserRouter>
-    </div>
+          <Route path="/Job/:id" component={Detail} />
+          <Route path="/Job" exact component={Job} />
+          <Route path="/User/:id" component={User} />
+          <Footer />
+        </BrowserRouter>
+      </div>
+    </TextContext.Provider>
   );
 }
 

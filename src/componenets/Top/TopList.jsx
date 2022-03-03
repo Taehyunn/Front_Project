@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-// import styles from "../../CSS/TopList.module.scss";
 import { getStoryIds } from "../utils/Api";
 import TopItem from "./TopItem";
 import useIsMount from "../useIsMount";
@@ -91,33 +90,34 @@ export default function TopList() {
   const [storyIds, setStoryIds] = useState(
     () => JSON.parse(window.localStorage.getItem("storyIds")) || []
   );
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [isError, setisError] = useState();
 
   const isMount = useIsMount();
   useEffect(() => {
-    window.localStorage.setItem("storyIds", JSON.stringify(storyIds));
+    storyIds &&
+      window.localStorage.setItem("storyIds", JSON.stringify(storyIds));
   }, [storyIds]);
+
   useEffect(() => {
     try {
-      if (isMount.current) {
-        setisError(false);
-        getStoryIds().then((data) => setStoryIds(data));
-      }
+      setisError(false);
+      getStoryIds().then((data) => setStoryIds(data));
     } catch (e) {
       setisError(true);
     }
     setLoading(false);
 
+    getStoryIds();
     return () => {
-      setStoryIds();
+      setStoryIds([]);
     };
   }, [isMount]);
 
   if (isError) return <div>에러가 발생했습니다</div>;
 
   return (
-    <>
+    <div>
       <Banner>
         <h2>TOP 5</h2>
         <p>Find out most hot isues</p>
@@ -134,6 +134,6 @@ export default function TopList() {
           ))}
         </TopUl>
       )}
-    </>
+    </div>
   );
 }

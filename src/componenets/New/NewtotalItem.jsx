@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { getStory } from "../utils/Api";
 import styled from "styled-components";
 import { mapTime } from "../mapTime";
 import { Link } from "react-router-dom";
-
+import TextContext from "../../contexts/TextContext";
 export const NewStyledItem = styled.div`
   display: flex;
   flex-direction: column;
@@ -94,6 +94,8 @@ function Newtotal({ newlist }) {
   const [newItem, setNewItem] = useState([]);
   const [newDetailUrl, setNewDetailUrl] = useState("");
   const [newUserUrl, setnewUserUrl] = useState("");
+  const Text = useContext(TextContext);
+  const Newtext = Text.text;
 
   useEffect(() => {
     getStory(newlist).then((data) => data && setNewItem(data));
@@ -111,7 +113,8 @@ function Newtotal({ newlist }) {
     };
   }, [newItem.by]);
   const urlName = newItem.url?.slice(8).split("/")[0];
-  return newItem && newItem.url ? (
+  return newItem.url &&
+    newItem.title.toLowerCase().includes(Newtext.toLowerCase()) ? (
     <NewStyledItem>
       {newItem.url && (
         <a href={newItem.url} className="small_link" target="_blank">

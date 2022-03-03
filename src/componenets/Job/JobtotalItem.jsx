@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { getStory } from "../utils/Api";
 import styled from "styled-components";
 import { mapTime } from "../mapTime";
 import { Link } from "react-router-dom";
+import TextContext from "../../contexts/TextContext";
 
 const JobStyledItem = styled.div`
   display: flex;
@@ -94,6 +95,8 @@ export function Jobtotal({ joblist }) {
   const [jobItem, setJobItem] = useState([]);
   const [jobDetailUrl, setJobDetailUrl] = useState("");
   const [jobUserUrl, setjobUserUrl] = useState("");
+  const Text = useContext(TextContext);
+  const Jobtext = Text.text;
 
   //Job 데이터 받아오기
   useEffect(() => {
@@ -113,7 +116,8 @@ export function Jobtotal({ joblist }) {
   //소제목(host) 네임만 따오기.
   const urlName = jobItem.url?.slice(8).split("/")[0];
 
-  return jobItem && jobItem.url ? (
+  return jobItem.url &&
+    jobItem.title?.toLowerCase().includes(Jobtext.toLowerCase()) ? (
     <JobStyledItem>
       <li>
         {jobItem.url && (

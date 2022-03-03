@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { getStory } from "../utils/Api";
 import styled from "styled-components";
 import { mapTime } from "../mapTime";
 import { Link } from "react-router-dom";
+import TextContext from "../../contexts/TextContext";
 
 const ShowStyledItem = styled.div`
   display: flex;
@@ -95,6 +96,8 @@ export function Showtotal({ showlist }) {
   const [showUrl, setShowUrl] = useState("");
   const [showDetail, setShowDetail] = useState("");
   const [showUserUrl, setshowUserUrl] = useState("");
+  const Text = useContext(TextContext);
+  const Showtext = Text.text;
 
   useEffect(() => {
     getStory(showlist).then((data) => data && setShowItem(data));
@@ -115,7 +118,8 @@ export function Showtotal({ showlist }) {
   }, [showItem.by]);
   const urlName = showItem.url?.slice(8).split("/")[0];
 
-  return showItem ? (
+  return showItem.url &&
+    showItem.title?.toLowerCase().includes(Showtext.toLowerCase()) ? (
     <ShowStyledItem>
       <li>
         {showItem.url && (

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { getStory } from "../utils/Api";
 import styled from "styled-components";
 import { mapTime } from "../mapTime";
 import { Link } from "react-router-dom";
+import TextContext from "../../contexts/TextContext";
 
 const AskStyledItem = styled.div`
   display: flex;
@@ -96,6 +97,9 @@ export function Asktotal({ asklist }) {
   const [askDetail, setAskDetail] = useState("");
   const [askUserUrl, setaskUserUrl] = useState("");
 
+  const Text = useContext(TextContext);
+  const Asktext = Text.text;
+
   useEffect(() => {
     getStory(asklist).then((data) => data && setAskItem(data));
     setAskUrl(`https://news.ycombinator.com/item?id=${asklist}`);
@@ -114,9 +118,12 @@ export function Asktotal({ asklist }) {
     };
   }, [askItem.by]);
 
+  const filterAsk = askItem.title
+    ?.toLowerCase()
+    .includes(Asktext.toLowerCase());
   const urlName = askItem.url?.slice(8).split("/")[0];
-  // console.log(askItem);
-  return askItem ? (
+
+  return askItem.title && filterAsk ? (
     <AskStyledItem>
       <li>
         {urlName ? (

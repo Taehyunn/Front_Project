@@ -85,13 +85,14 @@ export default function Search({ searchIds, text, setText }) {
   const handleChange = (e) => {
     setText(e.target.value);
   };
-  const onReset = () => {
+  const onVisible = () => {
     setVisible(!visible);
     setText("");
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    onReset();
+    setText(text);
+    setText("");
   };
   return (
     <SearchHeader>
@@ -114,12 +115,14 @@ export default function Search({ searchIds, text, setText }) {
           <img
             src="https://rawcdn.githack.com/Taehyunn/Front_Project/232f269887695c9ebd2f75a022a70625caa94027/public/img/search.png"
             alt="검색"
-            onClick={onReset}
+            onClick={onVisible}
+            type="submit"
           />
         </Link>
         <input
           value={text}
           type="text"
+          autoFocus={true}
           className={visible ? "searchinput + focused" : "searchinput"}
           placeholder="검색어를 입력해 주세요"
           onChange={handleChange}

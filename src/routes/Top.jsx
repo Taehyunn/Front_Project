@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useContext
+} from "react";
 import styled from "styled-components";
 import { getStoryIds, baseUrl, topStoriesUrl } from "../componenets/utils/Api";
 import { ToptotalItem } from "../componenets/Top/ToptotalItem";
@@ -33,6 +39,10 @@ const LoaderWrap = styled.div`
 export default function Top() {
   const [toplists, setTopList] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  // const filterMonster = toplists.map(toplist => {
+  //   return toplist.title.toLowerCase().includes(Text.text.toLowerCase())
+  // })
 
   useEffect(() => {
     const topfetchData = async () => {

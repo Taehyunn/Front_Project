@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { getStory, storyUrl } from "../utils/Api";
 import styled from "styled-components";
 import { mapTime } from "../mapTime";
 import { Link } from "react-router-dom";
+import TextContext from "../../contexts/TextContext";
 
 const TotalItemStyled = styled.div`
   display: flex;
@@ -99,6 +100,8 @@ export function Toptotal({ toplist }) {
   const [topUserUrl, settopUserUrl] = useState("");
   // const [topfilterItem, setFilterItem] = useState([]);
 
+  const Text = useContext(TextContext);
+  const Toptext = Text.text;
   useEffect(() => {
     getStory(toplist).then((data) => data && setTotal(data));
     setDetailUrl(`/Top/${toplist}`);
@@ -110,15 +113,12 @@ export function Toptotal({ toplist }) {
 
   useEffect(() => {
     settopUserUrl(`/User/${totalItem.by}`);
-
-    return () => {
-      settopUserUrl();
-    };
   }, [totalItem.by]);
 
   const urlName = totalItem.url?.slice(8).split("/")[0];
 
-  return totalItem && totalItem.url ? (
+  return totalItem.url &&
+    totalItem.title.toLowerCase().includes(Toptext.toLowerCase()) ? (
     <TotalItemStyled>
       <li>
         {totalItem.url && (
